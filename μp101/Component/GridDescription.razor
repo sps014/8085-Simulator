@@ -1,0 +1,37 @@
+﻿<div class="col-md-6 mb-4">
+
+    <!-- Card -->
+    <a href="/draw" class="card hoverable waves-effect">
+
+        <!-- Card content -->
+        <div class="card-body">
+
+            <div class="media">
+                <span class="card-img-100 d-inline-flex justify-content-center align-items-center rounded-circle grey lighten-3 mr-4">
+                    <i class="fas fa-draw-polygon fa-2x"></i>
+                </span>
+                <div class="media-body">
+                    <h5 class="dark-grey-text mb-3">@Title</h5>
+                    <p class="font-weight-light text-muted mb-0">@Description @ChildContent</p>
+                </div>
+            </div>
+
+        </div>
+
+    </a>
+    <!-- Card -->
+
+</div>
+
+
+@code
+{
+    [Parameter]
+    public string Title { get; set; }
+    [Parameter]
+    public string Description { get; set; }
+    [Parameter]
+    public string IconInfo { get; set; }
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}
