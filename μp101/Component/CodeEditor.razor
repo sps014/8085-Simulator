@@ -1,0 +1,67 @@
+﻿@*https://codepen.io/triss90/pen/bZaQYJ*@
+
+
+<pre class="code" style="background:black" contenteditable="true">
+@ChildContent
+</pre>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    h1 {
+        text-align: center;
+        color: #232B2B;
+        margin: 50px;
+    }
+
+    .code {
+        background: #232B2B;
+        border-radius: 3px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        border-left: 6px solid #516363;
+        width: 95%;
+        margin: 50px auto;
+        white-space: pre-wrap;
+        padding: 20px 20px 20px 50px;
+        color: #c7d3de;
+        counter-reset: step;
+        counter-increment: step 0;
+        position: relative;
+    }
+
+        .code .l {
+            line-height: 1.4em;
+        }
+
+            .code .l:before {
+                color: #516363;
+                position: absolute;
+                left: 15px;
+                content: counter(step);
+                counter-increment: step;
+            }
+
+    .selector {
+        color: #c7d3de;
+    }
+
+    .property {
+        color: #99c791;
+    }
+
+    .value {
+        color: #bf94c0;
+    }
+</style>
+
+@code
+{
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public string Width { get; set; }
+    [Parameter]
+    public string Height { get; set; }
+}
