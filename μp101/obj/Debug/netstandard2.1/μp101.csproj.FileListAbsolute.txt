@@ -145,6 +145,7 @@ C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\μ
 C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\μp101.csproj.CoreCompileInputs.cache
 C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\μp101.RazorComponent.input.cache
 C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\RazorDeclaration\App.razor.g.cs
+C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\RazorDeclaration\Component\GridCard.razor.g.cs
 C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\RazorDeclaration\Pages\Index.razor.g.cs
 C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\RazorDeclaration\Shared\MainLayout.razor.g.cs
 C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\RazorDeclaration\Shared\NavMenu.razor.g.cs
@@ -154,6 +155,7 @@ C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\μ
 C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\μp101.TagHelpers.output.cache
 C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\μp101.RazorCoreGenerate.cache
 C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\Razor\App.razor.g.cs
+C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\Razor\Component\GridCard.razor.g.cs
 C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\Razor\Pages\Index.razor.g.cs
 C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\Razor\Shared\MainLayout.razor.g.cs
 C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\Razor\Shared\NavMenu.razor.g.cs
@@ -274,5 +276,3 @@ C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\st
 C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\staticwebassets\μp101.StaticWebAssets.xml
 C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\μp101.dll
 C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\μp101.pdb
-C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\RazorDeclaration\Component\GridCard.razor.g.cs
-C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\Razor\Component\GridCard.razor.g.cs
