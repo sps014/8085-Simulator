@@ -1,7 +1,7 @@
 ﻿@*https://codepen.io/triss90/pen/bZaQYJ*@
 
 
-<pre class="code" style="background:black" contenteditable="true">
+<pre class="code" style="background:black" contenteditable="true" @onblur="Blured">
 @ChildContent
 </pre>
 
@@ -64,4 +64,9 @@
     public string Width { get; set; }
     [Parameter]
     public string Height { get; set; }
+    [Parameter]
+    public string Address { get; set; }
+    [Parameter]
+    public string Memonics { get; set; }
+
 }
