@@ -1,0 +1,27 @@
+﻿<div class="container my-5">
+
+
+    <!--Section: Content-->
+    <section class="dark-grey-text">
+
+        <!-- Section description -->
+        <p class="lead text-center white-text w-responsive mx-auto text-muted mt-4 pt-2 mb-5">Online Simulator for Microprocessors</p>
+
+        <!--First row-->
+        <div class="row">
+
+            @ChildContent
+           
+        </div>
+        <!--First row-->
+
+    </section>
+
+
+</div>
+
+@code
+{
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

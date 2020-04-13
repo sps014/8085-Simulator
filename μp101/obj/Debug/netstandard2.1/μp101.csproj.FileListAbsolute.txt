@@ -276,3 +276,5 @@ C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\st
 C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\staticwebassets\μp101.StaticWebAssets.xml
 C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\μp101.dll
 C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\μp101.pdb
+C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\RazorDeclaration\Component\GridHolder.razor.g.cs
+C:\Users\shive\Desktop\Test\MicroProcessor101\μp101\obj\Debug\netstandard2.1\Razor\Component\GridHolder.razor.g.cs
