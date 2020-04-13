@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using μp101.Highlighters;
+using μp101.Core;
 
 namespace μp101.Component
 {
@@ -21,12 +21,20 @@ namespace μp101.Component
         [Parameter]
         public string Address { get; set; }
         [Parameter]
-        public string Memonics { get; set; }
+        public string Mnemonic { get; set; }
         [Parameter]
         public ProcessorTypes ProcessorType { get; set; } = ProcessorTypes.Intel8085;
 
-        string MarkDownText { get; set; } = @"<span class='l slector'>.code {</span>
-    < span class='l property'>background</span>: <span class='value'>$bg-color</span>";
+        string MarkDownText { get; set; } = @"
+        MVI B, 008
+        MVI C, 08H
+        MOV A, D
+        BACK: RAR
+        JNC SKIP
+        INR B
+        SKIP: DCR C
+        JNZ BACK
+        HLT ";
 
         private ElementReference cellElement;
 
@@ -47,7 +55,11 @@ namespace μp101.Component
             switch(ProcessorType)
             {
                 case ProcessorTypes.Intel8085:
-                    MarkDownText = Intel8085Highlighter.GenerateMarkDownText(raw);
+                    var s = Intel8085Highlighter.GenerateMarkDownText(raw);
+                    MarkDownText = s;
+                    StateHasChanged();
+                    Console.WriteLine(s);
+                    break;
             }
 
         }

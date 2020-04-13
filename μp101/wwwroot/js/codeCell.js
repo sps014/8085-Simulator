@@ -1,3 +1,3 @@
 ﻿function getInnerCodeCellText(cell) {
-    return cell.innerText;
+    return cell.innerHTML;
 }

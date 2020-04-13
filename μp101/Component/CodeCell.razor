@@ -1,20 +1,18 @@
 ﻿@*https://codepen.io/triss90/pen/bZaQYJ*@
 @inject IJSRuntime Runtime
 
-<pre class="code" style="background:black" contenteditable="true" @ref="cellElement" @onkeyup="onKeyUp">
-@((MarkupString)MarkDownText)
-</pre>
+@*<pre class="code" style="background:black" contenteditable="true" @ref="cellElement" @onkeyup="onKeyUp">
+@if(MarkDownText!=null)
+    @((MarkupString)MarkDownText)
+</pre>*@
+
+<div contenteditable="true" style="width:100%;height:200px;border:1px solid #000;
+background-color:black;color:white" @ref="cellElement" @onkeyup="onKeyUp">
+   @if(MarkDownText!=null)
+       @((MarkupString)MarkDownText)
+</div>
 
 <style>
-    * {
-        box-sizing: border-box;
-    }
-
-    h1 {
-        text-align: center;
-        color: #232B2B;
-        margin: 50px;
-    }
 
     .code {
         background: #232B2B;
@@ -26,8 +24,6 @@
         white-space: pre-wrap;
         padding: 20px 20px 20px 50px;
         color: #c7d3de;
-        counter-reset: step;
-        counter-increment: step 0;
         position: relative;
     }
 
@@ -35,24 +31,6 @@
             line-height: 1.4em;
         }
 
-            .code .l:before {
-                color: #516363;
-                position: absolute;
-                left: 15px;
-                content: counter(step);
-                counter-increment: step;
-            }
 
-    .selector {
-        color: #c7d3de;
-    }
-
-    .property {
-        color: #99c791;
-    }
-
-    .value {
-        color: #bf94c0;
-    }
 </style>
 
