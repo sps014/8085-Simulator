@@ -56,38 +56,3 @@
     }
 </style>
 
-@code
-{
-    [Parameter]
-    public RenderFragment ChildContent { get; set; }
-    [Parameter]
-    public string Width { get; set; }
-    [Parameter]
-    public string Height { get; set; }
-    [Parameter]
-    public string Address { get; set; }
-    [Parameter]
-    public string Memonics { get; set; }
-
-    string MarkDownText { get; set; } = @"<span class='l slector'>.code {</span>
-    < span class='l property'>background</span>: <span class='value'>$bg-color</span>";
-
-    ElementReference cellElement;
-
-    async void onKeyUp()
-    {
-        string s = await FetchRawText();
-        Console.WriteLine(s);
-    }
-
-    private async Task<string> FetchRawText()
-    {
-        return await  Runtime.InvokeAsync<string>("getInnerCodeCellText", cellElement);
-    }
-
-    private void GenerateMarkDownText()
-    {
-
-    }
-
-}
