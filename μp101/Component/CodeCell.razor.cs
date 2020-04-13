@@ -46,8 +46,15 @@ namespace μp101.Component
         {
             id = ID++;
             StateHasChanged();
-            CreateEditor();
             return base.OnInitializedAsync();
+        }
+        protected override void OnAfterRender(bool firstRender)
+        {
+            if(firstRender)
+            {
+                CreateEditor();
+            }
+            base.OnAfterRender(firstRender);
         }
         async void CreateEditor()
         {
