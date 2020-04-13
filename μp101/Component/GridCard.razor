@@ -1,7 +1,7 @@
 ﻿<div class="col-md-6 mb-4">
 
     <!-- Card -->
-    <a href="/draw" class="card hoverable waves-effect @CardColor">
+    <a href="@Route" class="card hoverable waves-effect @CardColor">
 
         <!-- Card content -->
         <div class="card-body">
@@ -36,6 +36,8 @@
     public RenderFragment ChildContent { get; set; }
     [Parameter]
     public string TextColor { get; set; } = "white-text";
+    [Parameter]
+    public string Route { get; set; } = "/";
     [Parameter]
     public string CardColor { get; set; } = "black";
 

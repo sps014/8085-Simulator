@@ -2,7 +2,7 @@
 @using μp101.Component;
 
 <GridHolder>
-    <GridCard Title="8085 Simulator" IconInfo="fas fa-microchip fa-2x">
+    <GridCard Route="/Intel8085" Title="8085 Simulator" IconInfo="fas fa-microchip fa-2x">
         Run Assembly programs for 8085 microprocessors in browser.
     </GridCard>
     <GridCard Title="8086 Simulator" IconInfo="fas fa-draw-polygon fa-2x">
@@ -10,17 +10,7 @@
     </GridCard>
 </GridHolder>
 
-<CodeCell>
-    MVI B, 008
-    MVI C, 08H
-    MOV A, D
-    BACK: RAR
-    JNC SKIP
-    INR B
-    SKIP: DCR C
-    JNZ BACK
-    HLT
-</CodeCell>
+
 
 
 <style>
