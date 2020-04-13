@@ -19,9 +19,7 @@ namespace μp101.Component
         [Parameter]
         public string Height { get; set; }
         [Parameter]
-        public string Address { get; set; }
-        [Parameter]
-        public string Mnemonic { get; set; }
+        public string Mnemonics { get; set; }
         [Parameter]
         public ProcessorTypes ProcessorType { get; set; } = ProcessorTypes.Intel8085;
 
@@ -40,7 +38,6 @@ namespace μp101.Component
         JNZ BACK
         HLT ";
 
-        private ElementReference cellElement;
 
         protected override Task OnInitializedAsync()
         {
