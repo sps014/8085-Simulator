@@ -57,31 +57,6 @@ namespace μp101.Component
         {
             await Runtime.InvokeVoidAsync("createCodeCell", idStr);
         }
-        void onKeyUp()
-        {
-            GenerateMarkDownText();
-        }
-
-        private async Task<string> FetchRawText()
-        {
-            return await Runtime.InvokeAsync<string>("getInnerCodeCellText", cellElement);
-        }
-
-        private async void GenerateMarkDownText()
-        {
-            string raw = await FetchRawText();
-            
-            switch(ProcessorType)
-            {
-                case ProcessorTypes.Intel8085:
-                    var s = Intel8085Highlighter.GenerateMarkDownText(raw);
-                    MarkDownText = s;
-                    StateHasChanged();
-                    Console.WriteLine(s);
-                    break;
-            }
-
-        }
 
         public enum ProcessorTypes
         {
