@@ -1,15 +1,8 @@
 ﻿@*https://codepen.io/triss90/pen/bZaQYJ*@
 @inject IJSRuntime Runtime
 
-@*<pre class="code" style="background:black" contenteditable="true" @ref="cellElement" @onkeyup="onKeyUp">
-@if(MarkDownText!=null)
-    @((MarkupString)MarkDownText)
-</pre>*@
-
-<div contenteditable="true" style="width:100%;height:200px;border:1px solid #000;
-background-color:black;color:white" @ref="cellElement" @onkeyup="onKeyUp">
-   @if(MarkDownText!=null)
-       @((MarkupString)MarkDownText)
+<div style="width:400px;height:200px;background-color:black" class="CodeMirror cm-s-yonce" @ref="cellElement" id="@idStr">
+    
 </div>
 
 <style>

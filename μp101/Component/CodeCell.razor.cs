@@ -25,6 +25,10 @@ namespace μp101.Component
         [Parameter]
         public ProcessorTypes ProcessorType { get; set; } = ProcessorTypes.Intel8085;
 
+        public static int ID = 0;
+        private int id { get; set; }
+        private string idStr => $"cell_{id}";
+
         string MarkDownText { get; set; } = @"
         MVI B, 008
         MVI C, 08H
@@ -38,6 +42,17 @@ namespace μp101.Component
 
         private ElementReference cellElement;
 
+        protected override Task OnInitializedAsync()
+        {
+            id = ID++;
+            StateHasChanged();
+            CreateEditor();
+            return base.OnInitializedAsync();
+        }
+        async void CreateEditor()
+        {
+            await Runtime.InvokeVoidAsync("createCodeCell", idStr);
+        }
         void onKeyUp()
         {
             GenerateMarkDownText();
