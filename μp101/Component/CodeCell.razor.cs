@@ -25,6 +25,8 @@ namespace μp101.Component
         [Parameter]
         public MessageTypes MessageType { get; set; } = MessageTypes.Success;
         [Parameter]
+        public string TopBottomMargin { get; set; } = "0px";
+        [Parameter]
         public ProcessorTypes ProcessorType { get; set; } = ProcessorTypes.Intel8085;
 
         public static int ID = 0;

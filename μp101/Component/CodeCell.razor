@@ -1,26 +1,19 @@
 ﻿@*https://codepen.io/triss90/pen/bZaQYJ*@
 @inject IJSRuntime Runtime
 
-<div>
-    <div></div>
-    <div>
-          <textarea id="@idStr" @bind="Mnemonics">
+    <textarea id="@idStr" @bind="Mnemonics">
               
-          </textarea>
-    </div>
-    <div>
-        @Message
-    </div>
-    
-</div>
+    </textarea>
+
     <style>
-    .CodeMirror {
-        border: 1px solid #eee;
-        height: @Height;
-        max-height: 1000px;
-        width:@Width;
-        margin-left:20px;
-    }
+        .CodeMirror {
+            border: 1px solid #eee;
+            height: @Height;
+            max-height: 1000px;
+            width: @Width;
+            margin-top: @TopBottomMargin;
+            margin-bottom: @TopBottomMargin;
+        }
 
     .CodeMirror-scroll {
         height: @Height;

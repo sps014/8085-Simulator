@@ -1,0 +1,13 @@
+﻿<div class="col-lg-@TotalColumns @CardColor rounded-sm">
+    @ChildContent
+</div>
+
+
+@code{
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public int TotalColumns { get; set; } = 6;
+    [Parameter]
+    public string CardColor { get; set; }
+}

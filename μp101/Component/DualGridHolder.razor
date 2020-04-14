@@ -1,0 +1,27 @@
+﻿<div class="container">
+
+    <!--Section: Content-->
+    <section class="white-text">
+
+        <!-- Grid row -->
+        <div class="row">
+
+            @ChildContent
+
+        </div>
+
+        <!-- Grid row -->
+
+    </section>
+    <!--Section: Content-->
+
+
+</div>
+
+@code
+{
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public int TotalColumns { get; set; }= 12;
+}
