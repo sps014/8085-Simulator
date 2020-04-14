@@ -1,11 +1,11 @@
 ﻿<div>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
 
-        @for (int i = 0; i < TabID.Length; i++)
+        @foreach(var tab in TabIDs)
         {
-            <li class="nav-item @((i==ActiveTab)?" active ":string.Empty)">
-                <a class="nav-link" id="tab-@TabID[i]" data-toggle="tab" href="#@TabID[i]" role="tab" aria-controls="profile"
-                   aria-selected="false">@TabID[i]</a>
+            <li class="nav-item">
+                <a class="nav-link @((tab==TabIDs[ActiveTab])?" active ":string.Empty)" id="tab-@tab" data-toggle="tab" href="#@tab" role="tab" aria-controls="profile"
+                   aria-selected="false">@tab</a>
             </li>
         }
 
@@ -21,7 +21,7 @@
     [Parameter]
     public RenderFragment ChildContent { get; set; }
     [Parameter]
-    public string[] TabID { get; set; }
+    public string[] TabIDs { get; set; }
     [Parameter]
     public int ActiveTab { get; set; } = 0;
 }
