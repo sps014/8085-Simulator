@@ -10,6 +10,8 @@ function createCodeCell(cell) {
             mode: "asm86",
             lineNumbers: true,
             viewportMargin: Infinity,
+            lineWrapping: true,
+            styleActiveLine: { nonEmpty: true }
         });
     }
     catch (e) {

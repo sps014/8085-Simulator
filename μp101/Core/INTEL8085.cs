@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace μp101.Core
 {
-    public static class Intel8085Highlighter
+    public static class iNTEL8085
     {
         private const string NumberColor = "yellow";
         public static string GenerateMarkDownText(string raw)

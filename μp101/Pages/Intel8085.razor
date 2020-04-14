@@ -11,10 +11,10 @@
 
   
     <DualGridHolder>
-        <DualCard CardColor="mdb-color darken-3" TotalColumns="5">
+        <DualCard CardColor="mdb-color darken-3" TotalColumns="4">
             <CodeCell Width="100%" Height="78vh" Mnemonics="MOV A,B" TopBottomMargin="20px" />
         </DualCard>
-        <DualCard CardColor="grey darken-4" TotalColumns="7">
+        <DualCard CardColor="grey darken-4" TotalColumns="8">
             <TabHolder TabIDs="Tabs">
                 <TabPage ID="@Tabs[0].ToString()" Active="true">
                     hello
@@ -23,6 +23,12 @@
                     chalo
                 </TabPage>
                 <TabPage ID="@Tabs[2].ToString()">
+                    malo
+                </TabPage>
+                <TabPage ID="@Tabs[3].ToString()">
+                    galo
+                </TabPage>
+                <TabPage ID="@Tabs[4].ToString()">
                     malo
                 </TabPage>
             </TabHolder>
@@ -42,5 +48,5 @@
 
 @code
 {
-    string[] Tabs = new string[] {"Stack","Flags","Wigs" };
+    string[] Tabs = new string[] {"Data","Registers","Memory","Ports I/O","Utility" };
 }
