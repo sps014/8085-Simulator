@@ -4,8 +4,8 @@
 <div>
     <div></div>
     <div>
-          <textarea id="@idStr" style="height:auto">
-              @ChildContent
+          <textarea id="@idStr" @bind="Mnemonics">
+              
           </textarea>
     </div>
     <div>
@@ -19,6 +19,7 @@
         height: @Height;
         max-height: 1000px;
         width:@Width;
+        margin-left:20px;
     }
 
     .CodeMirror-scroll {

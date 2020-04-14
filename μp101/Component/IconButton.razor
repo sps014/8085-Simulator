@@ -1,0 +1,15 @@
+﻿<button type="button" class="btn @Color waves-effect">
+    <i class="@Icon" aria-hidden="true"></i>
+</button>
+
+@code
+{
+    [Parameter]
+    public string Color { get; set; }
+    [Parameter]
+    public string Icon { get; set; }
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+}

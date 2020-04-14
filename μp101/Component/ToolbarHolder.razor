@@ -1,0 +1,10 @@
+﻿<div class="btn-toolbar flex-center" style="position:relative;top:-5px" role="toolbar" aria-label="Toolbar with button groups">
+    <div class="btn-group mr-0" role="group" aria-label="First group">
+        @ChildContent
+    </div>
+</div>
+@code
+{
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}
