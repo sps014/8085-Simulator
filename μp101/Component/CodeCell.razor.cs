@@ -17,6 +17,8 @@ namespace μp101.Component
         [Parameter]
         public string Width { get; set; }
         [Parameter]
+        public string Height { get; set; } = "400px";
+        [Parameter]
         public string Mnemonics { get; set; }
         [Parameter]
         public string Message { get; set; }

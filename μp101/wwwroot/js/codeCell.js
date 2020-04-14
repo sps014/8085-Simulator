@@ -9,7 +9,7 @@ function createCodeCell(cell) {
             value: "function  j00H(){console.log('PK')}",
             theme: "yonce",
             mode: "asm86",
-            lineNumbers: false,
+            lineNumbers: true,
             viewportMargin: Infinity
         });
     }
