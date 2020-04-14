@@ -1,0 +1,27 @@
+﻿<div>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+        @for (int i = 0; i < TabID.Length; i++)
+        {
+            <li class="nav-item @((i==ActiveTab)?" active ":string.Empty)">
+                <a class="nav-link" id="tab-@TabID[i]" data-toggle="tab" href="#@TabID[i]" role="tab" aria-controls="profile"
+                   aria-selected="false">@TabID[i]</a>
+            </li>
+        }
+
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        @ChildContent
+    </div>
+
+</div>
+
+@code
+{
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public string[] TabID { get; set; }
+    [Parameter]
+    public int ActiveTab { get; set; } = 0;
+}

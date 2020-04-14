@@ -1,0 +1,12 @@
+﻿<div class="tab-pane fade @(Active?"show active":"") " id="@ID" role="tabpanel" aria-labelledby="tab-@ID">
+@ChildContent
+</div>
+@code
+{
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public string ID { get; set; }
+    [Parameter]
+    public bool Active { get; set; }
+}
