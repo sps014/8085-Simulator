@@ -1,0 +1,17 @@
+﻿@if(Editable)
+{
+<td class="pt-3-half @Color" contenteditable="true">@ChildContent</td>
+}
+else
+{
+<td class="pt-3-half @Color">@ChildContent</td>
+}
+@code{
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public bool Editable { get; set; } = false;
+    [Parameter]
+    public string Color { get; set; } = "white-text";
+
+}

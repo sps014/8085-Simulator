@@ -1,1 +1,38 @@
-﻿
+﻿<div class="card rgba-black-light">
+    <div class="card-body">
+        <div id="table" class="table-editable">
+
+            <table class="table table-bordered table-responsive-md table-striped text-center"
+                   style="margin:auto;width:100%;table-layout:fixed">
+                <thead>
+                    <tr>
+                        @foreach (string s in ColumnNames)
+                        {
+                            <th class="text-center @HeaderColor font-weight-bolder">@s</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @ChildContent
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<style>
+    table td:first-child {
+        width: 100%;
+    }
+</style>
+@code
+{
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public string[] ColumnNames { get; set; }
+    [Parameter]
+    public bool Editable { get; set; } = false;
+    [Parameter]
+    public string HeaderColor { get; set; } = "orange-text";
+
+}

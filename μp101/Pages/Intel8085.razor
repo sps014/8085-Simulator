@@ -17,7 +17,14 @@
         <DualCard CardColor="grey darken-4" TotalColumns="8">
             <TabHolder TabIDs="Tabs">
                 <TabPage ID="@Tabs[0].ToString()" Active="true">
-                    hello
+                    <br />
+                    <TableHolder ColumnNames="DataTable">
+                        <TableItem>
+                            <TableValue Editable="true">OK7</TableValue>
+                            <TableValue Editable="true">O3K</TableValue>
+                            <TableValue>OK0</TableValue>
+                        </TableItem>
+                    </TableHolder>
                 </TabPage>
                 <TabPage ID="@Tabs[1].ToString()">
                     chalo
@@ -43,10 +50,13 @@
         background: linear-gradient(90deg, rgba(17,50,62,1) 0%, rgba(30,41,82,1) 100%);
         background-size: 100% 100vh;
         background-position: 0% 0%;
+        color:white
     }
 </style>
 
 @code
 {
     string[] Tabs = new string[] {"Data","Registers","Memory","Ports I/O","Utility" };
+    string[] DataTable= new string[] { "Location","Value","Value(Hex)" };
+
 }
