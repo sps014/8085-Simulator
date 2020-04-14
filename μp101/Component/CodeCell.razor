@@ -1,20 +1,28 @@
 ﻿@*https://codepen.io/triss90/pen/bZaQYJ*@
 @inject IJSRuntime Runtime
 
-<textarea id="@idStr" style="height:auto">
-    @ChildContent
-</textarea>
-
-<style>
+<div>
+    <div></div>
+    <div>
+          <textarea id="@idStr" style="height:auto">
+              @ChildContent
+          </textarea>
+    </div>
+    <div>
+        @Message
+    </div>
+    
+</div>
+    <style>
     .CodeMirror {
         border: 1px solid #eee;
-        height: auto;
-        max-height: 2000px;
+        height: 400px;
+        max-height: 1000px;
         width:@Width;
     }
 
     .CodeMirror-scroll {
-        height: auto;
-        max-height: 2000px;
+        height: 400px;
+        max-height: 1000px;
     }
-</style>
+    </style>

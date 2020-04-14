@@ -14,6 +14,6 @@ function createCodeCell(cell) {
         });
     }
     catch (e) {
-        console.error(e.message.toString());
+        console.error(e);
     }
 }
