@@ -29,6 +29,12 @@
                         <DualCard>
                             <label for="exampleForm2">Start At (Decimal[0-65535]):</label>
                             <input type="text" id="exampleForm2" class="form-control" @bind-value="MemoryStart">
+                            @if (startRangeParseFlag)
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    Invalid Memory Range , enter decimal value between 0-65535
+                                </div>
+                            }
                         </DualCard>
                         <DualCard>
                             <p>Maximum Cells To Display : @MemoryDisplayCount</p>
