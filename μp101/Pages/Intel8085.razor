@@ -18,6 +18,26 @@
             <TabHolder TabIDs="Tabs">
                 <TabPage ID="@Tabs[0].ToString()" Active="true">
                     <br />
+                    
+                </TabPage>
+                <TabPage ID="@Tabs[1].ToString()">
+                    chalo
+                </TabPage>
+                <TabPage ID="@Tabs[2].ToString()">
+                    <br />
+                    <DualGridHolder>
+                        <DualCard>
+                            <label for="exampleForm2">Start At:</label>
+                            <input type="text" id="exampleForm2" class="form-control" @bind-value="MemoryStart">
+                        </DualCard>
+                        <DualCard>
+                            <p>Maximum Cells To Display : @MemoryDisplayCount</p>
+                            <input type="range"
+                                   class="custom-range" max="100" min="5" step="1" @bind-value="MemoryDisplayCount" />
+
+                        </DualCard>
+                    </DualGridHolder>
+
                     <TableHolder ColumnNames="DataTable">
                         @for (int i = 0; i < 10; i++)
                         {
@@ -29,18 +49,6 @@
                         }
 
                     </TableHolder>
-                </TabPage>
-                <TabPage ID="@Tabs[1].ToString()">
-                    chalo
-                </TabPage>
-                <TabPage ID="@Tabs[2].ToString()">
-                    <br />
-                    <!-- Default input -->
-                    <label for="exampleForm2">Start At:</label>
-                    <input type="text" id="exampleForm2" class="form-control">
-                    <p>Maximum Cells To Display : @MemoryDisplayCount</p>
-                    <input type="range"
-                           class="custom-range" max="100" min="5" step="1" @bind-value="MemoryDisplayCount" />
 
                 </TabPage>
                 <TabPage ID="@Tabs[3].ToString()">
@@ -67,8 +75,8 @@
 
 @code
 {
-        string[] Tabs = new string[] {"Data","Registers","Memory","Ports I/O","Utility" };
-        string[] DataTable= new string[] { "Location","Value","Value(Hex)" };
+    private string[] Tabs = new string[] {"Data","Registers","Memory","Ports I/O","Utility" };
+    private string[] DataTable= new string[] { "Location","Value","Value(Hex)" };
     public static int MemoryDisplayCount { get; set; } = 5;
     public static string MemoryStart { get; set; } = "0";
 
