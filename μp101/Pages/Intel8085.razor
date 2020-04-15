@@ -29,14 +29,9 @@
                         <DualCard>
                             <label for="exampleForm2">Start At :</label>
                             <form onsubmit="return false;">
-                                <input type="number" min="0" max="65535" class="form-control" @bind-value="MemoryStart">
+                                <input type="number" min="0" max="@(I8085.MemorySize-1)" class="form-control" @bind-value="MemoryStart">
                             </form>
-                            @*@if (!StartRangeParseFlag)
-                            {
-                                <div class="alert alert-danger" role="alert">
-                                    Invalid Memory Range , enter decimal value between 0-65535
-                                </div>
-                            }*@
+
                         </DualCard>
                         <DualCard>
                             <p>Maximum Cells To Display : @MemoryDisplayCount</p>
@@ -125,7 +120,7 @@
             return MemoryStart;
         else
         {
-            MemoryStart = 0;
+           // MemoryStart = 0;
             return 0;
 
         }
