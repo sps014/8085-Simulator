@@ -35,6 +35,13 @@ namespace μp101.Core
     {
         public byte Data { get; set; }
         public string Hex => Data.ToString("X2");
+        public void FromHex(string str)
+        {
+            if(str.Length==2)
+            {
+                Data = Convert.ToByte(str, 16);
+            }
+        }
     }
     public struct Flag
     {

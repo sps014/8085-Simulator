@@ -19,28 +19,29 @@
                 <TabPage ID="@Tabs[0].ToString()" Active="true">
                     <br />
                     <TableHolder ColumnNames="DataTable">
-                        <TableItem>
-                            <TableValue Editable="true" Color="blue-text">OK7</TableValue>
-                            <TableValue Editable="true">O3K</TableValue>
-                            <TableValue>OK0</TableValue>
-                        </TableItem>
-                        <TableItem>
-                            <TableValue Editable="true"  Color="blue-text">OK7</TableValue>
-                            <TableValue Editable="true">O3K</TableValue>
-                            <TableValue>OK0</TableValue>
-                        </TableItem>
-                        <TableItem>
-                            <TableValue Editable="true"  Color="blue-text">OK7</TableValue>
-                            <TableValue Editable="true">O3K</TableValue>
-                            <TableValue>OK0</TableValue>
-                        </TableItem>
+                        @for (int i = 0; i < 10; i++)
+                        {
+                            <TableItem>
+                                <TableValue Editable="true" Color="blue-text">OK7</TableValue>
+                                <TableValue Editable="true">O3K</TableValue>
+                                <TableValue>OK0</TableValue>
+                            </TableItem>
+                        }
+
                     </TableHolder>
                 </TabPage>
                 <TabPage ID="@Tabs[1].ToString()">
                     chalo
                 </TabPage>
                 <TabPage ID="@Tabs[2].ToString()">
-                    malo
+                    <br />
+                    <!-- Default input -->
+                    <label for="exampleForm2">Start At:</label>
+                    <input type="text" id="exampleForm2" class="form-control">
+                    <p>Maximum Cells To Display : @MemoryDisplayCount</p>
+                    <input type="range"
+                           class="custom-range" max="100" min="5" step="1" @bind-value="MemoryDisplayCount" />
+
                 </TabPage>
                 <TabPage ID="@Tabs[3].ToString()">
                     galo
@@ -66,7 +67,9 @@
 
 @code
 {
-    string[] Tabs = new string[] {"Data","Registers","Memory","Ports I/O","Utility" };
-    string[] DataTable= new string[] { "Location","Value","Value(Hex)" };
+        string[] Tabs = new string[] {"Data","Registers","Memory","Ports I/O","Utility" };
+        string[] DataTable= new string[] { "Location","Value","Value(Hex)" };
+    public static int MemoryDisplayCount { get; set; } = 5;
+    public static string MemoryStart { get; set; } = "0";
 
 }
