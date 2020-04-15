@@ -1,0 +1,81 @@
+﻿<br />
+<DualGridHolder>
+    <DualCard>
+        <label for="exampleForm2">Start At :</label>
+        <form onsubmit="return false;">
+            <input type="number" min="0" max="@(I8085.MemorySize-1)" class="form-control" @bind-value="MemoryStart">
+        </form>
+
+    </DualCard>
+    <DualCard>
+        <p>Maximum Cells To Display : @MemoryDisplayCount</p>
+        <input type="range"
+               class="custom-range" max="50" min="5" step="1" @bind-value="MemoryDisplayCount" />
+
+    </DualCard>
+</DualGridHolder>
+<br />
+
+<TableHolder ColumnNames="DataTable">
+    @for (int i = 0; i < MemoryDisplayCount; i++)
+    {
+        int local_i = i;
+        int currentStart = GetMemoryIndex();
+        @if (local_i + currentStart >= I8085.MemorySize)
+            break;
+        var mem = I8085.Memory[currentStart + local_i];
+        <TableItem>
+            <TableValue Color="blue-text">@(currentStart+local_i)</TableValue>
+            <TableValue>@mem.Data</TableValue>
+            <TableValue OnClick="()=> { Console.WriteLine(local_i+GetMemoryIndex()); }">@mem.Hex</TableValue>
+            <TableValue>
+                <a class="btn btn-primary btn-sm waves-effect"><i class="far fa-edit"></i></a>
+            </TableValue>
+        </TableItem>
+    }
+
+</TableHolder>
+@code
+{
+    private string[] DataTable = new string[] { "Location", "Value", "Value(Hex)", "Edit" };
+
+    private int memoryDisplayCount = 5;
+    public int MemoryDisplayCount
+    {
+        get
+        {
+            return memoryDisplayCount;
+        }
+        set
+        {
+            memoryDisplayCount = value;
+            StateHasChanged();
+        }
+    }
+
+    private int memoryStart { get; set; } = 0;
+    public int MemoryStart
+    {
+        get
+        {
+            return memoryStart;
+        }
+        set
+        {
+            memoryStart = value;
+            StateHasChanged();
+        }
+    }
+
+    private int GetMemoryIndex()
+    {
+        if (MemoryStart >= 0 && MemoryStart < I8085.MemorySize)
+            return MemoryStart;
+        else
+        {
+            // MemoryStart = 0;
+            return 0;
+
+        }
+    }
+}
