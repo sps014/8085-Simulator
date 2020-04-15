@@ -27,7 +27,7 @@
                     <br />
                     <DualGridHolder>
                         <DualCard>
-                            <label for="exampleForm2">Start At:</label>
+                            <label for="exampleForm2">Start At (Decimal[0-65535]):</label>
                             <input type="text" id="exampleForm2" class="form-control" @bind-value="MemoryStart">
                         </DualCard>
                         <DualCard>
@@ -38,6 +38,8 @@
                         </DualCard>
                     </DualGridHolder>
                     <br />
+                    <a class="btn btn-info" onclick="toastr.info('Hi! I am info message.');">Info message</a>
+
                     <TableHolder ColumnNames="DataTable">
                         @for (int i = 0; i < MemoryDisplayCount; i++)
                         {
@@ -108,26 +110,23 @@
             StateHasChanged();
         }
     }
+    private bool startRangeParseFlag = false;
     private int GetMemoryIndex()
     {
         try
         {
-            if(!System.Text.RegularExpressions.Regex.IsMatch(MemoryStart, @"\d{1,}[Hh]?"))
+            if(!System.Text.RegularExpressions.Regex.IsMatch(MemoryStart, @"\d{1,}"))
             {
                 throw new Exception("Invalid Start Number.");
             }
-            if (MemoryStart.ToLower().IndexOf("h") > 0)
-            {
-                return Convert.ToInt32(MemoryStart, 16);
-            }
-            else
-            {
-                return int.Parse(MemoryStart);
-            }
+            startRangeParseFlag = false;
+            return int.Parse(MemoryStart);
+
         }
         catch(Exception e)
         {
             MemoryStart = "0";
+            startRangeParseFlag = true;
             return 0;
         }
     }
