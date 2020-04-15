@@ -27,14 +27,16 @@
                     <br />
                     <DualGridHolder>
                         <DualCard>
-                            <label for="exampleForm2">Start At (Decimal[0-65535]):</label>
-                            <input type="text" id="exampleForm2" class="form-control" @bind-value="MemoryStart">
-                            @if (startRangeParseFlag)
+                            <label for="exampleForm2">Start At :</label>
+                            <form onsubmit="return false;">
+                                <input type="number" min="0" max="65535" class="form-control" @bind-value="MemoryStart">
+                            </form>
+                            @*@if (!StartRangeParseFlag)
                             {
                                 <div class="alert alert-danger" role="alert">
                                     Invalid Memory Range , enter decimal value between 0-65535
                                 </div>
-                            }
+                            }*@
                         </DualCard>
                         <DualCard>
                             <p>Maximum Cells To Display : @MemoryDisplayCount</p>
@@ -44,7 +46,6 @@
                         </DualCard>
                     </DualGridHolder>
                     <br />
-                    <a class="btn btn-info" onclick="toastr.info('Hi! I am info message.');">Info message</a>
 
                     <TableHolder ColumnNames="DataTable">
                         @for (int i = 0; i < MemoryDisplayCount; i++)
@@ -90,6 +91,7 @@
 {
     private string[] Tabs = new string[] {"Data","Registers","Memory","Ports I/O","Utility" };
     private string[] DataTable= new string[] { "Location","Value","Value(Hex)" };
+
     private int memoryDisplayCount = 5;
     public int MemoryDisplayCount {
         get
@@ -103,8 +105,8 @@
         }
     }
 
-    private string memoryStart { get; set; } = "0";
-    public string MemoryStart
+    private int memoryStart { get; set; } = 0;
+    public int MemoryStart
     {
         get
         {
@@ -116,24 +118,16 @@
             StateHasChanged();
         }
     }
-    private bool startRangeParseFlag = false;
+
     private int GetMemoryIndex()
     {
-        try
+        if (MemoryStart >= 0 && MemoryStart < I8085.MemorySize)
+            return MemoryStart;
+        else
         {
-            if(!System.Text.RegularExpressions.Regex.IsMatch(MemoryStart, @"\d{1,}"))
-            {
-                throw new Exception("Invalid Start Number.");
-            }
-            startRangeParseFlag = false;
-            return int.Parse(MemoryStart);
-
-        }
-        catch(Exception e)
-        {
-            MemoryStart = "0";
-            startRangeParseFlag = true;
+            MemoryStart = 0;
             return 0;
+
         }
     }
 }
