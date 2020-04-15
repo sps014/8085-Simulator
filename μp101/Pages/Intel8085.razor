@@ -1,6 +1,6 @@
 ﻿@page "/Intel8085"
 @using μp101.Component;
-
+@using μp101.Core;
 
     <ToolbarHolder>
         <IconButton Color="purple-gradient" Icon="far fa-file"></IconButton>
@@ -39,12 +39,17 @@
                     </DualGridHolder>
 
                     <TableHolder ColumnNames="DataTable">
-                        @for (int i = 0; i < 10; i++)
+                        @for (int i = 0; i < MemoryDisplayCount; i++)
                         {
+                            int local_i = i;
+                            int currentStart = GetMemoryIndex();
+                            @if (local_i + currentStart >= I8085.MemorySize)
+                                break;
+                            var mem = I8085.Memory[currentStart + local_i];
                             <TableItem>
-                                <TableValue Editable="true" Color="blue-text">OK7</TableValue>
-                                <TableValue Editable="true">O3K</TableValue>
-                                <TableValue>OK0</TableValue>
+                                <TableValue Color="blue-text">@(currentStart+local_i)</TableValue>
+                                <TableValue>@mem.Data</TableValue>
+                                <TableValue>@mem.Hex</TableValue>
                             </TableItem>
                         }
 
@@ -77,7 +82,40 @@
 {
     private string[] Tabs = new string[] {"Data","Registers","Memory","Ports I/O","Utility" };
     private string[] DataTable= new string[] { "Location","Value","Value(Hex)" };
-    public static int MemoryDisplayCount { get; set; } = 5;
+    private int memoryDisplayCount = 5;
+    public int MemoryDisplayCount {
+        get
+        {
+            return memoryDisplayCount;
+        }
+        set
+        {
+            memoryDisplayCount = value;
+            StateHasChanged();
+        }
+    }
     public static string MemoryStart { get; set; } = "0";
-
+    private int GetMemoryIndex()
+    {
+        try
+        {
+            if(!System.Text.RegularExpressions.Regex.IsMatch(MemoryStart, @"\d{1,}[Hh]?"))
+            {
+                throw new Exception("Invalid Start Number.");
+            }
+            if (MemoryStart.ToLower().IndexOf("h") > 0)
+            {
+                return Convert.ToInt32(MemoryStart, 16);
+            }
+            else
+            {
+                return int.Parse(MemoryStart);
+            }
+        }
+        catch(Exception e)
+        {
+            MemoryStart = "0";
+            return 0;
+        }
+    }
 }

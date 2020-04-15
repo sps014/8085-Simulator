@@ -10,6 +10,7 @@ namespace μp101.Core
     public static class I8085
     {
         public static Memory[] Memory { get; } = new Memory[65536];
+        public const long MemorySize = 65536;
         public static Register A { get; } = new Register("A");
         public static Register B { get; } = new Register("B");
         public static Register C { get; } = new Register("C", B);
