@@ -94,7 +94,20 @@
             StateHasChanged();
         }
     }
-    public static string MemoryStart { get; set; } = "0";
+
+    private string memoryStart { get; set; } = "0";
+    public string MemoryStart
+    {
+        get
+        {
+            return memoryStart;
+        }
+        set
+        {
+            memoryStart = value;
+            StateHasChanged();
+        }
+    }
     private int GetMemoryIndex()
     {
         try
