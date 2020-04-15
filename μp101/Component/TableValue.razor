@@ -1,10 +1,10 @@
-﻿@if(Editable)
+﻿@if (Editable)
 {
-<td class="pt-3-half @Color" contenteditable="true">@ChildContent</td>
+    <td class="pt-3-half @Color" contenteditable="true" @onclick="OnClick">@ChildContent</td>
 }
 else
 {
-<td class="pt-3-half @Color">@ChildContent</td>
+    <td class="pt-3-half @Color" @onclick="OnClick">@ChildContent</td>
 }
 @code{
     [Parameter]
@@ -13,5 +13,8 @@ else
     public bool Editable { get; set; } = false;
     [Parameter]
     public string Color { get; set; } = "white-text";
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+
 
 }

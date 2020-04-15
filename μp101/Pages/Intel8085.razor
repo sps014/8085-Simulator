@@ -36,7 +36,7 @@
                         <DualCard>
                             <p>Maximum Cells To Display : @MemoryDisplayCount</p>
                             <input type="range"
-                                   class="custom-range" max="100" min="5" step="1" @bind-value="MemoryDisplayCount" />
+                                   class="custom-range" max="50" min="5" step="1" @bind-value="MemoryDisplayCount" />
 
                         </DualCard>
                     </DualGridHolder>
@@ -53,7 +53,10 @@
                             <TableItem>
                                 <TableValue Color="blue-text">@(currentStart+local_i)</TableValue>
                                 <TableValue>@mem.Data</TableValue>
-                                <TableValue>@mem.Hex</TableValue>
+                                <TableValue OnClick="()=> { Console.WriteLine(local_i+GetMemoryIndex()); }">@mem.Hex</TableValue>
+                                <TableValue>
+                                    <a class="btn-floating btn-lg btn-primary"><i class="far fa-edit"></i></a>
+                                </TableValue>
                             </TableItem>
                         }
 
@@ -85,7 +88,7 @@
 @code
 {
     private string[] Tabs = new string[] {"Data","Registers","Memory","Ports I/O","Utility" };
-    private string[] DataTable= new string[] { "Location","Value","Value(Hex)" };
+    private string[] DataTable= new string[] { "Location","Value","Value(Hex)","Edit" };
 
     private int memoryDisplayCount = 5;
     public int MemoryDisplayCount {
