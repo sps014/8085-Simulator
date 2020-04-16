@@ -33,10 +33,7 @@
                 <form onsubmit="return false;">
                     <input type="number" min="0" max="255" class="form-control frozen-dreams-gradient" @bind-value="I8085.Memory[local_i+currentStart].Data"/>
                 </form>
-                @*<a class="btn btn-primary btn-sm waves-effect" 
-                   data-toggle="modal" data-target="#basicExampleModal" @onclick="()=> { currentClicked=local_i + currentStart; }">
-                <i class="far fa-edit"></i>
-                </a>*@
+               
             </TableValue>
         </TableItem>
 
@@ -44,27 +41,6 @@
 
 </TableHolder>
 
-<!-- Modal -->
-<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content peach-gradient">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Memory Location : @currentClicked</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary peach-gradient">Modify</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 @code
 {
