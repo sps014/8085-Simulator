@@ -3,7 +3,7 @@
     <DualCard>
         <label for="exampleForm2">Start At :</label>
         <form onsubmit="return false;">
-            <input type="number" min="0" max="@(I8085.MemorySize-1)" class="form-control" @bind-value="MemoryStart">
+            <input type="number" min="0" max="@(I8085.MemorySize-1)" class="form-control frozen-dreams-gradient" @bind-value="MemoryStart">
         </form>
 
     </DualCard>
@@ -24,22 +24,54 @@
         @if (local_i + currentStart >= I8085.MemorySize)
             break;
         var mem = I8085.Memory[currentStart + local_i];
+
         <TableItem>
             <TableValue Color="blue-text">@(currentStart+local_i)</TableValue>
             <TableValue>@mem.Data</TableValue>
             <TableValue OnClick="()=> { Console.WriteLine(local_i+GetMemoryIndex()); }">@mem.Hex</TableValue>
             <TableValue>
-                <a class="btn btn-primary btn-sm waves-effect"><i class="far fa-edit"></i></a>
+                <form onsubmit="return false;">
+                    <input type="number" min="0" max="255" class="form-control frozen-dreams-gradient" @bind-value="I8085.Memory[local_i+currentStart].Data"/>
+                </form>
+                @*<a class="btn btn-primary btn-sm waves-effect" 
+                   data-toggle="modal" data-target="#basicExampleModal" @onclick="()=> { currentClicked=local_i + currentStart; }">
+                <i class="far fa-edit"></i>
+                </a>*@
             </TableValue>
         </TableItem>
+
     }
 
 </TableHolder>
+
+<!-- Modal -->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content peach-gradient">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Memory Location : @currentClicked</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary peach-gradient">Modify</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @code
 {
-    private string[] DataTable = new string[] { "Location", "Value", "Value(Hex)", "Edit" };
+    private string[] DataTable = new string[] { "Location", "Value", "Value(Hex)", "Edit (0-255)" };
 
     private int memoryDisplayCount = 5;
+    private int currentClicked = 0;
     public int MemoryDisplayCount
     {
         get
