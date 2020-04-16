@@ -3,10 +3,63 @@ Convert Numbers
 <DualGridHolder>
     <DualCard>
         Integer
-        <input type="number" step="1" class="form-control frozen-dreams-gradient" />
+        <input type="number" step="1" class="form-control frozen-dreams-gradient" @bind-value="Decimal"/>
     </DualCard>
     <DualCard>
         Hex
-        <input type="text" class="form-control frozen-dreams-gradient" />
+        <input type="text" class="form-control frozen-dreams-gradient" @bind-value="Hex"/>
     </DualCard>
 </DualGridHolder>
+
+@code
+{
+    string hex = "00";
+    string Hex
+    {
+        get
+        {
+            return hex;
+        }
+        set
+        {
+            hex = value;
+            decimals = ToInt();
+        }
+    }
+    int decimals = 0;
+    int Decimal
+    {
+        get
+        {
+            return decimals;
+        }
+        set
+        {
+            decimals = value;
+            hex = ToHex();
+        }
+    }
+
+    int ToInt()
+    {
+        try
+        {
+            return Convert.ToInt32(Hex, 16);
+        }
+        catch(Exception)
+        {
+            return 0;
+        }
+    }
+    string ToHex()
+    {
+        try
+        {
+            return Convert.ToString(Decimal, 16).ToUpper();
+        }
+        catch (Exception)
+        {
+            return "0";
+        }
+    }
+}
