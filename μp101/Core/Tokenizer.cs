@@ -6,39 +6,17 @@ using System.Threading.Tasks;
 
 namespace μp101.Core
 {
-    public static class Tokenizer
+    public class LineAssembleResult
     {
-        public static Token[] GetTokens(string raw)
-        {
-            List<Token> tokens=new List<Token>();
-            char[] whitespaces = new char[] { ' ','\t','\n' };
-            for(int i=0;i<raw.Length;i++)
-            {
-                
-                if(whitespaces.Contains(raw[i]))
-                {
-                    Token t = new Token();
-
-
-                    tokens.Add(t);
-                }
-            }
-            return tokens.ToArray();
-        }
+        public List<Memory> MemoriesChanged { get; set; }
+        public List<Register> RegistersChanged { get; set; }
+        public AssembleOutcome Result { get; set; }
+        public string ErrorMessage { get; set; }
     }
-    public class Token
+    
+    public enum AssembleOutcome
     {
-        public string TokenValue { get; set; }
-        public TokenType Type { get; set; }
-    }
-
-    public enum TokenType
-    {
-        HexNumber,
-        Number,
-        WhiteSpace,
-        NewLine,
-        Comma,
-        Word
+        Success,
+        Failed
     }
 }
