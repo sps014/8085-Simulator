@@ -27,7 +27,8 @@
                     <MemoryTab />
                 </TabPage>
                 <TabPage ID="@Tabs[3].ToString()">
-                    galo
+                    <br />
+                    <PortsAndIOTab/>
                 </TabPage>
                 <TabPage ID="@Tabs[4].ToString()">
                     <UtilityTab/>
@@ -50,7 +51,7 @@
 
 @code
 {
-    private string[] Tabs = new string[] {"Data","Registers","Memory","Ports I/O","Utility" };
+    private string[] Tabs = new string[] {"Data","Registers","Memory","IO_Ports","Utility" };
 
     
 }
