@@ -1,6 +1,11 @@
 ﻿
+<TableHolder ColumnNames="TableTitle">
+    
+</TableHolder>
+
 @code
 {
+    private string[] TableTitle = new string[] {"Location","Value","Type"};
     [Parameter]
     public List<LineAssembleResult> Results { get; set; }
 }

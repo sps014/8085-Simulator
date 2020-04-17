@@ -10,6 +10,7 @@ namespace μp101.Core
     {
         public List<Memory> MemoriesChanged { get; set; }
         public List<Register> RegistersChanged { get; set; }
+        public List<Flag> FlagsChanged { get; set; }
         public AssembleOutcome Result { get; set; }
         public string ErrorMessage { get; set; }
     }
