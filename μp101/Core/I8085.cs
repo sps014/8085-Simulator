@@ -20,6 +20,8 @@ namespace μp101.Core
         public static Register L { get; } = new Register("L", H);
         public static Register PC_Upper { get; set; } = new Register("PC");
         public static Register PC { get; set; } = new Register("PC", PC_Upper);
+        public static Register SP_Upper { get; set; } = new Register("SP");
+        public static Register SP { get; set; } = new Register("SP", SP_Upper);
     }
     public class Register
     {
