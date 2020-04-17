@@ -1,2 +1,24 @@
-﻿<h3>Todo</h3>
-<div>OK</div>
+﻿<TableHolder ColumnNames="flagsTitle">
+    <TableItem>
+        <TableValue>S</TableValue>
+        <TableValue>@(I8085.Flag_S.Value)</TableValue>
+    </TableItem>
+    <TableItem>
+        <TableValue>P</TableValue>
+        <TableValue>@(I8085.Flag_P.Value)</TableValue>
+    </TableItem><TableItem>
+    <TableValue>Z</TableValue>
+    <TableValue>@(I8085.Flag_Z.Value)</TableValue>
+</TableItem><TableItem>
+    <TableValue>AC</TableValue>
+    <TableValue>@(I8085.Flag_AC.Value)</TableValue>
+</TableItem><TableItem>
+    <TableValue>C</TableValue>
+    <TableValue>@(I8085.Flag_C.Value)</TableValue>
+</TableItem>
+</TableHolder>
+
+@code
+{
+    string[] flagsTitle = new string[] { "Flag Name", "Value" };
+}

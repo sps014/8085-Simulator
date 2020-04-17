@@ -24,11 +24,11 @@ namespace μp101.Core
         public static Register SP { get; } = new Register("SP", SP_Upper);
         public static Register PSW_Upper { get; } = new Register("PSW");
         public static Register PSW { get; } = new Register("PSW", PSW_Upper);
-        public static Flag AC { get; } = new Flag("AC");
-        public static Flag S { get; } = new Flag("AC");
-        public static Flag Z { get; } = new Flag("AC");
-        public static Flag P { get; } = new Flag("AC");
-        public static Flag C { get; } = new Flag("AC");
+        public static Flag Flag_AC { get; } = new Flag("AC");
+        public static Flag Flag_S { get; } = new Flag("S");
+        public static Flag Flag_Z { get; } = new Flag("Z");
+        public static Flag Flag_P { get; } = new Flag("P");
+        public static Flag Flag_C { get; } = new Flag("C");
 
     }
     public class Register
