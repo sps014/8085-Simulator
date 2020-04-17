@@ -18,12 +18,18 @@ namespace μp101.Core
         public static Register E { get; } = new Register("E", D);
         public static Register H { get; } = new Register("H");
         public static Register L { get; } = new Register("L", H);
-        public static Register PC_Upper { get; set; } = new Register("PC");
-        public static Register PC { get; set; } = new Register("PC", PC_Upper);
-        public static Register SP_Upper { get; set; } = new Register("SP");
-        public static Register SP { get; set; } = new Register("SP", SP_Upper);
-        public static Register PSW_Upper { get; set; } = new Register("PSW");
-        public static Register PSW { get; set; } = new Register("PSW", PSW_Upper);
+        public static Register PC_Upper { get; } = new Register("PC");
+        public static Register PC { get; } = new Register("PC", PC_Upper);
+        public static Register SP_Upper { get; } = new Register("SP");
+        public static Register SP { get; } = new Register("SP", SP_Upper);
+        public static Register PSW_Upper { get; } = new Register("PSW");
+        public static Register PSW { get; } = new Register("PSW", PSW_Upper);
+        public static Flag AC { get; } = new Flag("AC");
+        public static Flag S { get; } = new Flag("AC");
+        public static Flag Z { get; } = new Flag("AC");
+        public static Flag P { get; } = new Flag("AC");
+        public static Flag C { get; } = new Flag("AC");
+
     }
     public class Register
     {
