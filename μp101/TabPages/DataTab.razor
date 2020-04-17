@@ -1,5 +1,7 @@
 ﻿
-    <TableHolder ColumnNames="TableTitle">
+@if (Results != null)
+{
+<TableHolder ColumnNames="TableTitle">
         @foreach (LineAssembleResult res in Results)
         {
 
@@ -15,7 +17,7 @@
             @foreach (Memory m in res.MemoriesChanged)
             {
                 <TableItem>
-                    <TableValue>@(Array.IndexOf(I8085.Memory,m))</TableValue>
+                    <TableValue>@(Array.IndexOf(I8085.Memory, m))</TableValue>
                     <TableValue>@(m.Data)</TableValue>
                     <TableValue>Memory</TableValue>
 
@@ -33,7 +35,11 @@
 
         }
     </TableHolder>
-
+}
+else
+{
+    <p>No data to show, please execute instruction to see the content changed</p>
+}
 @code
 {
     private string[] TableTitle = new string[] {"Location","Value","Type"};
