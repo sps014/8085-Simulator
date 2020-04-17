@@ -24,11 +24,11 @@
                     <RegisterTab/>
                 </TabPage>
                 <TabPage ID="@Tabs[2].ToString()">
-                    <MemoryTab />
+                    <FlagsTab />
                 </TabPage>
                 <TabPage ID="@Tabs[3].ToString()">
                     <br />
-                    <FlagsTab/>
+                    <MemoryTab />
                 </TabPage>
                 <TabPage ID="@Tabs[4].ToString()">
                     <UtilityTab/>
@@ -51,7 +51,7 @@
 
 @code
 {
-    private string[] Tabs = new string[] {"Data","Registers","Memory","Flags","Utility" };
+    private string[] Tabs = new string[] {"Data","Registers","Flags","Memory","Utility" };
 
-    
+
 }
