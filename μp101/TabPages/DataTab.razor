@@ -1,7 +1,38 @@
 ﻿
-<TableHolder ColumnNames="TableTitle">
-    
-</TableHolder>
+    <TableHolder ColumnNames="TableTitle">
+        @foreach (LineAssembleResult res in Results)
+        {
+
+            @foreach (Register r in res.RegistersChanged)
+            {
+                <TableItem>
+                    <TableValue>@(r.Name)</TableValue>
+                    <TableValue>@(r.Value)</TableValue>
+                    <TableValue>Register</TableValue>
+
+                </TableItem>
+            }
+            @foreach (Memory m in res.MemoriesChanged)
+            {
+                <TableItem>
+                    <TableValue>@(Array.IndexOf(I8085.Memory,m))</TableValue>
+                    <TableValue>@(m.Data)</TableValue>
+                    <TableValue>Memory</TableValue>
+
+                </TableItem>
+            }
+            @foreach (Flag flag in res.FlagsChanged)
+            {
+                <TableItem>
+                    <TableValue>@(flag.Name)</TableValue>
+                    <TableValue>@(Convert.ToInt32(flag.Value))</TableValue>
+                    <TableValue>Flag</TableValue>
+
+                </TableItem>
+            }
+
+        }
+    </TableHolder>
 
 @code
 {
