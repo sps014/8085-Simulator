@@ -1,20 +1,20 @@
 ﻿<TableHolder ColumnNames="flagsTitle">
     <TableItem>
         <TableValue>S</TableValue>
-        <TableValue>@(I8085.Flag_S.Value)</TableValue>
+        <TableValue>@(Convert.ToInt32(I8085.Flag_S.Value))</TableValue>
     </TableItem>
     <TableItem>
         <TableValue>P</TableValue>
-        <TableValue>@(I8085.Flag_P.Value)</TableValue>
+        <TableValue>@(Convert.ToInt32(I8085.Flag_P.Value))</TableValue>
     </TableItem><TableItem>
     <TableValue>Z</TableValue>
-    <TableValue>@(I8085.Flag_Z.Value)</TableValue>
+    <TableValue>@(Convert.ToInt32(I8085.Flag_Z.Value))</TableValue>
 </TableItem><TableItem>
     <TableValue>AC</TableValue>
-    <TableValue>@(I8085.Flag_AC.Value)</TableValue>
+    <TableValue>@(Convert.ToInt32(I8085.Flag_AC.Value))</TableValue>
 </TableItem><TableItem>
     <TableValue>C</TableValue>
-    <TableValue>@(I8085.Flag_C.Value)</TableValue>
+    <TableValue>@(Convert.ToInt32(I8085.Flag_C.Value))</TableValue>
 </TableItem>
 </TableHolder>
 
