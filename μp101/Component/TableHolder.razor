@@ -8,7 +8,7 @@
                     <tr>
                         @foreach (string s in ColumnNames)
                         {
-                            <th class="text-center @HeaderColor font-weight-bolder">@s</th>
+                            <th class="text-center @HeaderColor font-weight-bolder">@(s.Replace("_"," "))</th>
                         }
                     </tr>
                 </thead>
