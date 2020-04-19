@@ -49,4 +49,8 @@ else
     private string[] TableTitle = new string[] {"Location","Value","Value(Hex)","Type"};
     [Parameter]
     public List<LineAssembleResult> Results { get; set; }
+    public void Refresh()
+    {
+        StateHasChanged();
+    }
 }
