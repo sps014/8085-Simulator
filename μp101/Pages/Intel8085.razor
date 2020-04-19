@@ -55,6 +55,10 @@
     List<LineAssembleResult> res { get; set; } = new List<LineAssembleResult>();
 
     protected RegisterTab registerTab { get; set; }
+    protected DataTab dataTab { get; set; }
+    protected FlagsTab flagsTab { get; set; }
+    protected UtilityTab utilityTab { get; set; }
+    protected MemoryTab memoryTab { get; set; }
 
     protected override void OnAfterRender(bool firstRender)
     {
