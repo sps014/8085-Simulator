@@ -13,7 +13,10 @@ namespace μp101.Core
             var match = Regex.Match(line, @"MOV\s+(\w)\s*\,\s*(\w)");
             if(match.Success)
             {
-                if(AssemblyUtility.IsRegister(match.Groups[1].Value)!=null
+                Register to = AssemblyUtility.IsRegister(match.Groups[1].Value);
+                Register from = AssemblyUtility.IsRegister(match.Groups[1].Value);
+
+                if (to!=null
                     && AssemblyUtility.IsRegister(match.Groups[2].Value) != null)
                 {
 
