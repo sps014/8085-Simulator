@@ -36,16 +36,16 @@ namespace μp101.Core
         public string Name { get; }
         public Memory Value { get; set; }
         public Register Pair { get; } = null;
-        public Register(string n, Register pair = null, Memory v = null)
+        public Register(string n, Register pair = null, Memory v = new Memory())
         {
             Name = n;
-            if (v == null)
-                v = new Memory();
+
             Value = v;
+
             Pair = pair;
         }
     }
-    public class Memory
+    public struct Memory
     {
         public byte Data { get; set; }
         public string Hex => Data.ToString("X2");
