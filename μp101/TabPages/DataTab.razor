@@ -1,40 +1,40 @@
 ﻿
 @if (Results != null)
 {
-<TableHolder ColumnNames="TableTitle">
+    <TableHolder ColumnNames="TableTitle">
         @foreach (LineAssembleResult res in Results)
         {
 
             @foreach (Register r in res.RegistersChanged)
             {
-    <TableItem>
-        <TableValue>@(r.Name)</TableValue>
-        <TableValue>@(r.Value)</TableValue>
-        <TableValue>@(r.Hex)</TableValue>
-        <TableValue>Register</TableValue>
+                <TableItem>
+                    <TableValue>@(r.Name)</TableValue>
+                    <TableValue>@(r.Value)</TableValue>
+                    <TableValue>@(r.Hex)</TableValue>
+                    <TableValue>Register</TableValue>
 
-    </TableItem>
+                </TableItem>
             }
             @foreach (Memory m in res.MemoriesChanged)
             {
-<TableItem>
-    <TableValue>@(Array.IndexOf(I8085.Memory, m))</TableValue>
-    <TableValue>@(m.Data)</TableValue>
-    <TableValue>@(m.Hex)</TableValue>
-    <TableValue>Memory</TableValue>
+                <TableItem>
+                    <TableValue>@(Array.IndexOf(I8085.Memory, m))</TableValue>
+                    <TableValue>@(m.Data)</TableValue>
+                    <TableValue>@(m.Hex)</TableValue>
+                    <TableValue>Memory</TableValue>
 
-</TableItem>
+                </TableItem>
             }
 
             @foreach (Flag flag in res.FlagsChanged)
             {
-<TableItem>
-    <TableValue>@(flag.Name)</TableValue>
-    <TableValue>@(Convert.ToInt32(flag.Value))</TableValue>
-    <TableValue>@(flag.Value)</TableValue>
-    <TableValue>Flag</TableValue>
+                <TableItem>
+                    <TableValue>@(flag.Name)</TableValue>
+                    <TableValue>@(Convert.ToInt32(flag.Value))</TableValue>
+                    <TableValue>@(flag.Value)</TableValue>
+                    <TableValue>Flag</TableValue>
 
-</TableItem>
+                </TableItem>
             }
 
         }

@@ -57,7 +57,6 @@
     protected RegisterTab registerTab { get; set; }
     protected DataTab dataTab { get; set; }
     protected FlagsTab flagsTab { get; set; }
-    protected UtilityTab utilityTab { get; set; }
     protected MemoryTab memoryTab { get; set; }
 
     protected override void OnAfterRender(bool firstRender)
@@ -74,6 +73,7 @@
             Refresh();
 
         }
+
         base.OnAfterRender(firstRender);
 
     }
@@ -81,6 +81,10 @@
     protected void Refresh()
     {
         registerTab.Refresh();
+        memoryTab.Refresh();
+        dataTab.Refresh();
+        flagsTab.Refresh();
+
         StateHasChanged();
     }
 
