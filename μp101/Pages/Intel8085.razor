@@ -21,7 +21,7 @@
                 </TabPage>
                 <TabPage ID="@Tabs[1].ToString()">
                     <br />
-                    <RegisterTab/>
+                    <RegisterTab  @ref="registerTab"/>
                 </TabPage>
                 <TabPage ID="@Tabs[2].ToString()">
                     <FlagsTab />
@@ -54,6 +54,8 @@
     private string[] Tabs = new string[] {"Data","Registers","Flags","Memory","Utility" };
     List<LineAssembleResult> res { get; set; } = new List<LineAssembleResult>();
 
+    protected RegisterTab registerTab { get; set; }
+
     protected override void OnAfterRender(bool firstRender)
     {
 
@@ -65,11 +67,17 @@
             Console.WriteLine(I8085.B.Value);
             res.Add(ress);
 
-            StateHasChanged();
+            Refresh();
 
         }
         base.OnAfterRender(firstRender);
 
+    }
+
+    protected void Refresh()
+    {
+        registerTab.Refresh();
+        StateHasChanged();
     }
 
 
