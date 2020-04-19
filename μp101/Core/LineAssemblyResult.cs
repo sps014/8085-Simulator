@@ -15,6 +15,11 @@ namespace μp101.Core
         public string ErrorMessage { get; set; } = "";
         public int Bytes  { get;set; }
         public string OpCode { get; set; }
+        public void SetError(string err)
+        {
+            Result = AssembleOutcome.Failed;
+            ErrorMessage = err;
+        }
     }
     
     public enum AssembleOutcome
