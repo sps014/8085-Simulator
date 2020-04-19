@@ -50,7 +50,14 @@ namespace μp101.Core
         }
         private static void ProcessWord(string word,string line,LineAssembleResult assembleResult)
         {
-
+            if(MnmonicsExecuter.ContainsKey(word.ToUpper()))
+            {
+                MnmonicsExecuter[word](line, assembleResult);
+            }
+            else
+            {
+                assembleResult.SetError("Unidentified keyword:" + word);
+            }
         }
 
         public delegate void Processable(string line, LineAssembleResult result);
