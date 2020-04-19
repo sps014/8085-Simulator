@@ -13,6 +13,8 @@ namespace μp101.Core
         public List<Flag> FlagsChanged { get; set; } = new List<Flag>();
         public AssembleOutcome Result { get; set; } = AssembleOutcome.Success;
         public string ErrorMessage { get; set; } = "";
+        public int Bytes  { get;set; }
+        public string OpCode { get; set; }
     }
     
     public enum AssembleOutcome
