@@ -53,7 +53,19 @@
 {
     private string[] Tabs = new string[] {"Data","Registers","Flags","Memory","Utility" };
 
+    protected override void OnAfterRender(bool firstRender)
+    {
 
- 
+        if (firstRender)
+        {
+            I8085.A.FromHex("0F");
+            var res = Assembler.ExecuteLine("MOV B,A");
+            Console.WriteLine(res.RegistersChanged[0].Name);
+
+        }
+        base.OnAfterRender(firstRender);
+
+    }
+
 
 }

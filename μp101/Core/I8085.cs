@@ -36,6 +36,11 @@ namespace μp101.Core
         public string Name { get; }
         public Memory Value { get; set; }
         public Register Pair { get; } = null;
+        public void FromHex(string str)
+        {
+            Value = new Memory();
+            Value.FromHex(str);
+        }
         public Register(string n, Register pair = null, Memory v = new Memory())
         {
             Name = n;
@@ -56,6 +61,8 @@ namespace μp101.Core
                 Data = Convert.ToByte(str, 16);
             }
         }
+        
+     
     }
     public class Flag
     {

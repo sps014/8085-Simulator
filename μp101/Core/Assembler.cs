@@ -37,9 +37,9 @@ namespace μp101.Core
             var match=Regex.Match(line, @"\s*(\w+)\s*");
             if(match.Success)
             {
-                if(match.Groups[0].Value.Length>=1)
+                if(match.Groups[1].Value.Length>=1)
                 {
-                    return match.Groups[0].Value;
+                    return match.Groups[1].Value;
                 }
             }
 
