@@ -34,18 +34,18 @@ namespace μp101.Core
     public class Register
     {
         public string Name { get; }
-        public Memory Value { get; set; }
+        public byte Value { get; set; }
         public Register Pair { get; } = null;
+        public string Hex => Value.ToString("X2");
+
         public void FromHex(string str)
         {
-            Value = new Memory();
-            Value.FromHex(str);
+            Value = Memory.FromHex_2(str);
         }
-        public Register(string n, Register pair = null, Memory v = new Memory())
+        public Register(string n, Register pair = null)
         {
             Name = n;
 
-            Value = v;
 
             Pair = pair;
         }
@@ -61,8 +61,14 @@ namespace μp101.Core
                 Data = Convert.ToByte(str, 16);
             }
         }
-        
-     
+        public static byte FromHex_2(string str)
+        {
+            if (str.Length == 2)
+            {
+                return Convert.ToByte(str, 16);
+            }
+            return 0;
+        }
     }
     public class Flag
     {

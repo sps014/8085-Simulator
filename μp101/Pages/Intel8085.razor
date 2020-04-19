@@ -17,7 +17,7 @@
             <TabHolder TabIDs="Tabs">
                 <TabPage ID="@Tabs[0].ToString()" Active="true">
                     <br />
-                    <DataTab/>
+                    <DataTab Results="res"/>
                 </TabPage>
                 <TabPage ID="@Tabs[1].ToString()">
                     <br />
@@ -52,6 +52,7 @@
 @code
 {
     private string[] Tabs = new string[] {"Data","Registers","Flags","Memory","Utility" };
+    List<LineAssembleResult> res { get; set; } = new List<LineAssembleResult>();
 
     protected override void OnAfterRender(bool firstRender)
     {
@@ -59,8 +60,11 @@
         if (firstRender)
         {
             I8085.A.FromHex("0F");
-            var res = Assembler.ExecuteLine("MOV B,A");
-            Console.WriteLine(res.RegistersChanged[0].Name);
+            var ress = Assembler.ExecuteLine("MOV B,A");
+            Console.WriteLine(ress.RegistersChanged[0].Name);
+            Console.WriteLine(ress.RegistersChanged[0].Value);
+            res.Add(ress);
+            StateHasChanged();
 
         }
         base.OnAfterRender(firstRender);
