@@ -17,18 +17,18 @@
             <TabHolder TabIDs="Tabs">
                 <TabPage ID="@Tabs[0].ToString()" Active="true">
                     <br />
-                    <DataTab Results="res"/>
+                    <DataTab Results="res" @ref="dataTab"/>
                 </TabPage>
                 <TabPage ID="@Tabs[1].ToString()">
                     <br />
                     <RegisterTab  @ref="registerTab"/>
                 </TabPage>
                 <TabPage ID="@Tabs[2].ToString()">
-                    <FlagsTab />
+                    <FlagsTab @ref="flagsTab"/>
                 </TabPage>
                 <TabPage ID="@Tabs[3].ToString()">
                     <br />
-                    <MemoryTab />
+                    <MemoryTab @ref="memoryTab"/>
                 </TabPage>
                 <TabPage ID="@Tabs[4].ToString()">
                     <UtilityTab/>
