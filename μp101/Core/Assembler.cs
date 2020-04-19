@@ -20,6 +20,11 @@ namespace μp101.Core
 
             string word = FetchMainWord(line,result);
 
+            if(word==null)
+                return result;
+
+            ProcessWord(word, line, result);
+
             return result;
         }
         private static string FetchMainWord(string line,LineAssembleResult result)
@@ -38,6 +43,10 @@ namespace μp101.Core
             result.ErrorMessage = "Invalid instruction found , can not  be processed.";
 
             return null;
+        }
+        private static void ProcessWord(string word,string line,LineAssembleResult assembleResult)
+        {
+
         }
 
         public delegate void Processable(string line, LineAssembleResult result);
