@@ -62,8 +62,9 @@
             I8085.A.FromHex("0F");
             var ress = Assembler.ExecuteLine("MOV B,A");
             Console.WriteLine(ress.RegistersChanged[0].Name);
-            Console.WriteLine(ress.RegistersChanged[0].Value);
+            Console.WriteLine(I8085.B.Value);
             res.Add(ress);
+
             StateHasChanged();
 
         }

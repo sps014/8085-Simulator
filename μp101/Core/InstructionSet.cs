@@ -16,8 +16,6 @@ namespace μp101.Core
                 Register to = AssemblyUtility.IsRegister(match.Groups[1].Value);
                 Register from = AssemblyUtility.IsRegister(match.Groups[2].Value);
 
-                Console.WriteLine("A:->"+I8085.A.Hex);
-
                 if (to!=null && from != null)
                 {
                     to.Value = from.Value;
