@@ -14,12 +14,12 @@ namespace μp101.Core
             if(match.Success)
             {
                 Register to = AssemblyUtility.IsRegister(match.Groups[1].Value);
-                Register from = AssemblyUtility.IsRegister(match.Groups[1].Value);
+                Register from = AssemblyUtility.IsRegister(match.Groups[2].Value);
 
-                if (to!=null
-                    && AssemblyUtility.IsRegister(match.Groups[2].Value) != null)
+                if (to!=null && from != null)
                 {
-
+                    to = from;
+                    result.RegistersChanged.Add(to);
                 }
                 else
                 {
