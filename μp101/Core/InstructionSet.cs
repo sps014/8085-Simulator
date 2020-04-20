@@ -36,7 +36,45 @@ namespace μp101.Core
         }
         public static void MVI(string line,LineAssembleResult result)
         {
+            var match = Regex.Match(line, @"mvi\s+([\w])\s*\,\s*(\d{1,}H?)");
+            if(match.Success)
+            {
+                Register to = AssemblyUtility.IsRegister(match.Groups[1].Value);
+                if(to!=null)
+                {
+                    bool valueHexType = match.Groups[2].Value.ToLower().IndexOf("h") > 0;
+                    byte value = 0;
+                    if(valueHexType)
+                    {
+                        string val = match.Groups[2].Value.ToLower().Replace("h", string.Empty);
+                        value = Convert.ToByte(val, 16);
+                    }
+                    else
+                    {
+                        value= Convert.ToByte(match.Groups[2].Value, 10);
+                    }
 
+                    if(value>=0&&value<=255)
+                    {
+                        to.Value = value;
+                    }
+                    else
+                    {
+                        result.SetError("MVI should utilized 8 bit data only ie from 00-FF or 0-255");
+                        return;
+                    }
+                }
+                else
+                {
+                    result.SetError("MVI instruction work with Register to Register Only.");
+                    return;
+                }
+            }
+            else
+            {
+                result.SetError("MVI instruction is incorrectly formatted");
+                return;
+            }
         }
     }
 }
