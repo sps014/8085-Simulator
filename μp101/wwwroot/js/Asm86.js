@@ -1,5 +1,5 @@
 ﻿CodeMirror.defineMode("asm86", function () {
-	var keywords1 = /^(mov|mvi)\b/i;
+	var keywords1 = /^(mov|mvi|add|adi)\b/i;
 	var keywords2 = /^(call|int|iret|ret|ja|jae|jb|jbe|jc|je|jg|jge|jl|jle|jmp|jna|jnae|jnb|jnbe|jnc|jne|jng|jnge|jnl|jnle|jno|jns|jnz|jo|js|jz)\b/i;
 	var keywords3 = /^(e?[abcd]x|[abcd][lh]|e?(si|di|bp|sp)|eip)\b/i;
 	var keywords4 = /^(d?word|byte|ptr)\b/i;
