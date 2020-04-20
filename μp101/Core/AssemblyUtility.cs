@@ -31,5 +31,9 @@ namespace μp101.Core
                     return null;
             }
         }
+        public static void AdjustFlags(string value)
+        {
+
+        }
     }
 }
