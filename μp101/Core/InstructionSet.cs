@@ -58,7 +58,7 @@ namespace μp101.Core
                     if(value>=0&&value<=255)
                     {
                         to.Value = value;
-                        //result.RegistersChanged.Add(to);
+                        result.RegistersChanged.Add(to);
                     }
                     else
                     {
