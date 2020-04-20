@@ -8,10 +8,12 @@ namespace μp101.Core
 {
     public static class Assembler
     {
-        private static Dictionary<string, Processable> MnmonicsExecuter = new Dictionary<string, Processable>()
-        {
-            { "MOV",InstructionSet.MOV }
-        };
+        private static Dictionary<string, Processable> 
+            MnmonicsExecuter = new Dictionary<string, Processable>()
+            {
+                { "MOV",InstructionSet.MOV },
+                {"MVI",InstructionSet.MVI }
+            };
 
         public static LineAssembleResult ExecuteLine(string line)
         {
