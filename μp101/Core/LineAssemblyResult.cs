@@ -14,7 +14,7 @@ namespace μp101.Core
         public AssembleOutcome Result { get; set; } = AssembleOutcome.Success;
         public string ErrorMessage { get; set; } = "";
         public int Bytes  { get;set; }
-        public string OpCode { get; set; }
+        public List<string> OpCode { get; set; } = new List<string>();
         public void SetError(string err)
         {
             Result = AssembleOutcome.Failed;
