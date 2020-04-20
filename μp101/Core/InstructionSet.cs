@@ -43,9 +43,8 @@ namespace μp101.Core
                 if(to!=null)
                 {
                     bool valueHexType = match.Groups[2].Value.ToLower().IndexOf("h") > 0;
-                    byte value = 0;
-                    Console.WriteLine(match.Groups[2].Value + " " + match.Groups[2].Value.Length);
-                    if(valueHexType)
+                    byte value;
+                    if (valueHexType)
                     {
                         string val = match.Groups[2].Value.ToLower().Replace("h", string.Empty);
                         value = Convert.ToByte(val, 16);
@@ -86,6 +85,7 @@ namespace μp101.Core
                 Register from = AssemblyUtility.IsRegister(match.Groups[1].Value);
                 if (from != null)
                 {
+                    Console.WriteLine("A"+I8085.A.Value);
                     I8085.A.Value += from.Value;
                     result.RegistersChanged.Add(I8085.A);
 
