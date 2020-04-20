@@ -13,7 +13,8 @@ namespace μp101.Core
             {
                 {"MOV",InstructionSet.MOV },
                 {"MVI",InstructionSet.MVI },
-                {"ADD",InstructionSet.ADD }
+                {"ADD",InstructionSet.ADD },
+                {"ADI",InstructionSet.ADI }
             };
 
         public static LineAssembleResult ExecuteLine(string line)

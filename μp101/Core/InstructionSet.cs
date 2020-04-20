@@ -106,16 +106,16 @@ namespace μp101.Core
             var match = Regex.Match(line, @"ADI\s+(\d{1,}H?)");
             if (match.Success)
             {
-                bool valueHexType = match.Groups[2].Value.ToLower().IndexOf("h") > 0;
+                bool valueHexType = match.Groups[1].Value.ToLower().IndexOf("h") > 0;
                 byte value;
                 if (valueHexType)
                 {
-                    string val = match.Groups[2].Value.ToLower().Replace("h", string.Empty);
+                    string val = match.Groups[1].Value.ToLower().Replace("h", string.Empty);
                     value = Convert.ToByte(val, 16);
                 }
                 else
                 {
-                    value = Convert.ToByte(match.Groups[2].Value, 10);
+                    value = Convert.ToByte(match.Groups[1].Value, 10);
                 }
                 if (value >= 0 && value <= 255)
                 {
