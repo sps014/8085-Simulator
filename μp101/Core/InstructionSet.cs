@@ -78,5 +78,28 @@ namespace μp101.Core
                 return;
             }
         }
+        public static void ADD(string line, LineAssembleResult result)
+        {
+            var match = Regex.Match(line, @"MVI\s+([\w])\s*\,\s*(\d{1,}H?)");
+            if (match.Success)
+            {
+                Register from = AssemblyUtility.IsRegister(match.Groups[1].Value);
+                if (from != null)
+                {
+
+                }
+                else
+                {
+                    result.SetError("MVI instruction work with Register to Register Only.");
+                    return;
+                }
+            }
+            else
+            {
+                result.SetError("ADD instruction is incorrectly formatted");
+                return;
+            }
+        }
+
     }
 }

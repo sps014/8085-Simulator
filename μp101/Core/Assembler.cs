@@ -11,8 +11,9 @@ namespace μp101.Core
         private static Dictionary<string, Processable> 
             MnmonicsExecuter = new Dictionary<string, Processable>()
             {
-                { "MOV",InstructionSet.MOV },
-                {"MVI",InstructionSet.MVI }
+                {"MOV",InstructionSet.MOV },
+                {"MVI",InstructionSet.MVI },
+                {"ADD",InstructionSet.ADD }
             };
 
         public static LineAssembleResult ExecuteLine(string line)
