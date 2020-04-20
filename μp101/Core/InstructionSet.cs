@@ -119,18 +119,18 @@ namespace μp101.Core
                 }
                 if (value >= 0 && value <= 255)
                 {
-                    I8085.A.Value+ = value;
+                    I8085.A.Value+= value;
                     result.RegistersChanged.Add(I8085.A);
                 }
                 else
                 {
-                    result.SetError("MVI should utilized 8 bit data only ie from 00-FF or 0-255");
+                    result.SetError("ADI should utilized 8 bit data only ie from 00-FF or 0-255");
                     return;
                 }
             }
             else
             {
-                result.SetError("ADD instruction is incorrectly formatted");
+                result.SetError("ADI instruction is incorrectly formatted");
                 return;
             }
         }

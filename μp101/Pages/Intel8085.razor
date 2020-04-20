@@ -64,11 +64,13 @@
 
         if (firstRender)
         {
-            var ress = Assembler.ExecuteLine("MVI B,15");
+            var ress = Assembler.ExecuteLine("MVI B,15H");
             Console.WriteLine(ress.ErrorMessage);
             Console.WriteLine(I8085.B.Value);
             res.Add(ress);
             ress = Assembler.ExecuteLine("ADD B");
+            res.Add(ress);
+            ress = Assembler.ExecuteLine("ADI 9H");
             res.Add(ress);
 
             Refresh();
