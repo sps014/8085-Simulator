@@ -80,12 +80,14 @@ namespace μp101.Core
         }
         public static void ADD(string line, LineAssembleResult result)
         {
-            var match = Regex.Match(line, @"MVI\s+([\w])\s*\,\s*(\d{1,}H?)");
+            var match = Regex.Match(line, @"ADD\s+([\w])");
             if (match.Success)
             {
                 Register from = AssemblyUtility.IsRegister(match.Groups[1].Value);
                 if (from != null)
                 {
+                    I8085.A.Value += from.Value;
+                    result.RegistersChanged.Add(I8085.A);
 
                 }
                 else
