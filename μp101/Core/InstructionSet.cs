@@ -85,7 +85,6 @@ namespace μp101.Core
                 Register from = AssemblyUtility.IsRegister(match.Groups[1].Value);
                 if (from != null)
                 {
-                    Console.WriteLine("A"+I8085.A.Value);
                     I8085.A.Value += from.Value;
                     result.RegistersChanged.Add(I8085.A);
 
@@ -102,6 +101,40 @@ namespace μp101.Core
                 return;
             }
         }
+        public static void ADI(string line, LineAssembleResult result)
+        {
+            var match = Regex.Match(line, @"ADI\s+(\d{1,}H?)");
+            if (match.Success)
+            {
+                bool valueHexType = match.Groups[2].Value.ToLower().IndexOf("h") > 0;
+                byte value;
+                if (valueHexType)
+                {
+                    string val = match.Groups[2].Value.ToLower().Replace("h", string.Empty);
+                    value = Convert.ToByte(val, 16);
+                }
+                else
+                {
+                    value = Convert.ToByte(match.Groups[2].Value, 10);
+                }
+                if (value >= 0 && value <= 255)
+                {
+                    I8085.A.Value+ = value;
+                    result.RegistersChanged.Add(I8085.A);
+                }
+                else
+                {
+                    result.SetError("MVI should utilized 8 bit data only ie from 00-FF or 0-255");
+                    return;
+                }
+            }
+            else
+            {
+                result.SetError("ADD instruction is incorrectly formatted");
+                return;
+            }
+        }
+
 
     }
 }
