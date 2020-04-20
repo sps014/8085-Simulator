@@ -65,8 +65,8 @@
         if (firstRender)
         {
             I8085.A.FromHex("0F");
-            var ress = Assembler.ExecuteLine("MOV B,A");
-            Console.WriteLine(ress.RegistersChanged[0].Name);
+            var ress = Assembler.ExecuteLine("MVI B,30");
+            Console.WriteLine(ress.ErrorMessage);
             Console.WriteLine(I8085.B.Value);
             res.Add(ress);
 

@@ -54,7 +54,7 @@ namespace μp101.Core
         {
             if(MnmonicsExecuter.ContainsKey(word.ToUpper()))
             {
-                MnmonicsExecuter[word](line, assembleResult);
+                MnmonicsExecuter[word](line.ToUpper(), assembleResult);
             }
             else
             {
