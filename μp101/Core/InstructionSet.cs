@@ -34,5 +34,9 @@ namespace μp101.Core
                 return;
             }
         }
+        public static void MVI(string line,LineAssembleResult result)
+        {
+
+        }
     }
 }
