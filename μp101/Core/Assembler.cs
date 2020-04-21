@@ -16,6 +16,7 @@ namespace μp101.Core
                 {"ADD",InstructionSet.ADD },
                 {"ADI",InstructionSet.ADI }
             };
+        public static LineAssembleResult<>
 
         public static LineAssembleResult ExecuteLine(string line,int lineNumber=0)
         {
@@ -65,6 +66,12 @@ namespace μp101.Core
         }
 
         public delegate void Processable(string line, LineAssembleResult result);
+
+        public enum ExecutionType
+        {
+            StepByStep,
+            InOneGo
+        }
 
     }
 }
