@@ -1,10 +1,10 @@
 ﻿@page "/Intel8085"
 
     <ToolbarHolder>
-        <IconButton Color="purple-gradient" Icon="far fa-file"></IconButton>
-        <IconButton Color="purple-gradient" Icon="far fa-save"></IconButton>
-        <IconButton Color="blue-gradient" Icon="fas fa-memory"></IconButton>
-        <IconButton Color="peach-gradient" Icon="fas fa-fan"></IconButton>
+        <IconButton Color="purple-gradient" Icon="far fa-file" OnClick="LoadAssembly"></IconButton>
+        <IconButton Color="purple-gradient" Icon="far fa-save" OnClick="RunAll"></IconButton>
+        <IconButton Color="blue-gradient" Icon="fas fa-memory" OnClick="RunLine"></IconButton>
+        <IconButton Color="peach-gradient" Icon="fas fa-fan" OnClick="ResetAll"></IconButton>
     </ToolbarHolder>
 
 <br />
@@ -78,6 +78,23 @@
         }
 
         base.OnAfterRender(firstRender);
+
+    }
+
+    void LoadAssembly()
+    {
+
+    }
+    void RunLine()
+    {
+
+    }
+    void RunAll()
+    {
+
+    }
+    void ResetAll()
+    {
 
     }
 
