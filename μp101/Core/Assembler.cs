@@ -16,7 +16,8 @@ namespace μp101.Core
                 {"ADD",InstructionSet.ADD },
                 {"ADI",InstructionSet.ADI }
             };
-        public static LineAssembleResult<>
+
+        public static Dictionary<string, int> LabelsCollection = new Dictionary<string, int>();
 
         public static LineAssembleResult ExecuteLine(string line,int lineNumber=0)
         {
