@@ -17,7 +17,7 @@ namespace μp101.Core
                 {"ADI",InstructionSet.ADI }
             };
 
-        public static LineAssembleResult ExecuteLine(string line)
+        public static LineAssembleResult ExecuteLine(string line,int lineNumber=0)
         {
             if(string.IsNullOrWhiteSpace(line))
             {
