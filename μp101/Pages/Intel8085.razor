@@ -1,17 +1,17 @@
 ﻿@page "/Intel8085"
 
     <ToolbarHolder>
-        <IconButton Color="purple-gradient" Icon="far fa-file" OnClick="LoadAssembly"></IconButton>
-        <IconButton Color="purple-gradient" Icon="far fa-save" OnClick="RunAll"></IconButton>
-        <IconButton Color="blue-gradient" Icon="fas fa-memory" OnClick="RunLine"></IconButton>
-        <IconButton Color="peach-gradient" Icon="fas fa-fan" OnClick="ResetAll"></IconButton>
+        <IconButton Color="purple-gradient" Icon="fas fa-microchip" OnClick="LoadAssembly"></IconButton>
+        <IconButton Color="purple-gradient" Icon="fas fa-angle-double-right" OnClick="RunAll"></IconButton>
+        <IconButton Color="blue-gradient" Icon="fas fa-angle-right" OnClick="RunLine"></IconButton>
+        <IconButton Color="peach-gradient" Icon="fas fa-sync" OnClick="ResetAll"></IconButton>
     </ToolbarHolder>
 
 <br />
   
     <DualGridHolder>
         <DualCard CardColor="mdb-color darken-3" TotalColumns="4">
-            <CodeCell Width="100%" Height="78vh" Mnemonics="MOV A,B" TopBottomMargin="20px" />
+            <CodeCell Width="100%" Height="78vh" Mnemonics="@(code)" TopBottomMargin="20px" />
         </DualCard>
         <DualCard CardColor="grey darken-4" TotalColumns="8">
             <TabHolder TabIDs="Tabs">
@@ -58,6 +58,11 @@
     protected DataTab dataTab { get; set; }
     protected FlagsTab flagsTab { get; set; }
     protected MemoryTab memoryTab { get; set; }
+
+    string code = @"MVI B,15H
+ADD B
+ADI 9H
+HLT";
 
     protected override void OnAfterRender(bool firstRender)
     {
