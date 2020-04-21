@@ -8,9 +8,9 @@ namespace μp101.Core
 {
     public class LineAssembleResult
     {
+        public int LineNumber { get; set; }
         public List<Memory> MemoriesChanged { get; set; } = new List<Memory>();
         public List<Register> RegistersChanged { get; set; } = new List<Register>();
-        public List<Flag> FlagsChanged { get; set; } = new List<Flag>();
         public AssembleOutcome Result { get; set; } = AssembleOutcome.Success;
         public string ErrorMessage { get; set; } = "";
         public int Bytes  { get;set; }
