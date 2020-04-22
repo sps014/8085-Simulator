@@ -17,6 +17,7 @@ namespace μp101.Core
                 {"ADI",InstructionSet.ADI }
             };
         private static string Code = null;
+        private static[] Lines;
 
         public static Dictionary<string, int> LabelsCollection { get; set; } = new Dictionary<string, int>();
 
