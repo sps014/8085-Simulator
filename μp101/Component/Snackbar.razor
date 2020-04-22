@@ -37,10 +37,24 @@
     [Parameter]
     public long Interval { get; set; } = 5000;
     private System.Timers.Timer timer = new System.Timers.Timer();
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        timer.Elapsed += (s, e) =>
+        {
+
+            timer.Stop();
+            Visible = false;
+            StateHasChanged();
+        };
+    }
     public void Show()
     {
         Visible = true;
         timer.Interval = Interval;
+        timer.Enabled = true;
+
+        timer.Start();
         StateHasChanged();
     }
 }
