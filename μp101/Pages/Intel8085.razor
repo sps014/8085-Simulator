@@ -17,7 +17,7 @@
             <TabHolder TabIDs="Tabs">
                 <TabPage ID="@Tabs[0].ToString()" Active="true">
                     <br />
-                    <DataTab Results="res" @ref="dataTab"/>
+                    <DataTab Results="result" @ref="dataTab"/>
                 </TabPage>
                 <TabPage ID="@Tabs[1].ToString()">
                     <br />
@@ -52,7 +52,7 @@
 @code
 {
     private string[] Tabs = new string[] {"Data","Registers","Flags","Memory","Utility" };
-    List<LineAssembleResult> res { get; set; } = new List<LineAssembleResult>();
+    List<LineAssembleResult> result { get; set; } = new List<LineAssembleResult>();
 
     protected RegisterTab registerTab { get; set; }
     protected DataTab dataTab { get; set; }
@@ -103,7 +103,7 @@ HLT";
         {
             Console.WriteLine("Error"+res.ErrorMessage);
             Console.WriteLine("REg Count" + res.RegistersChanged.Count);
-
+            result.Add(res);
         }
     }
     void ResetAll()
