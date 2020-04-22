@@ -34,4 +34,13 @@
     public RenderFragment ChildContent { get; set; }
     [Parameter]
     public string BackgroundColor { get; set; } = "#333";
+    [Parameter]
+    public long Interval { get; set; } = 5000;
+    private System.Timers.Timer timer = new System.Timers.Timer();
+    public void Show()
+    {
+        Visible = true;
+        timer.Interval = Interval;
+        StateHasChanged();
+    }
 }
