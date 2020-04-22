@@ -48,6 +48,10 @@ namespace μp101.Core
                 {
                     break;
                 }
+                if(result.Result==AssembleOutcome.Failed)
+                {
+                    break;
+                }
                 beginFrom = result.FutureLineNumber;
                 CurrentResult = result;
                 yield return result;
