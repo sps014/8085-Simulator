@@ -17,19 +17,30 @@ namespace μp101.Core
                 {"ADI",InstructionSet.ADI }
             };
         private static string Code = null;
-        private static[] Lines;
+        private static string[] Lines;
 
         public static Dictionary<string, int> LabelsCollection { get; set; } = new Dictionary<string, int>();
+        private static LineAssembleResult CurrentResult = null;
 
         public static void LoadToAssembly(string code)
         {
             Code = code;
+            Lines = code.Split("\r\n");
+            CurrentResult = null;
             LabelsCollection = new Dictionary<string, int>();
         }
-        public static void Execute()
+        public static void ExecuteRemaining()
         {
-            var lines = Code.Split("\r\n");
-            Console.WriteLine(lines.Length+lines[0]);
+            int beginFrom = CurrentResult == null ? 0 : CurrentResult.FutureLineNumber;
+            LineAssembleResult result;
+            do
+            {
+                result = ExecuteLine(Lines[beginFrom], beginFrom);
+                if (result == null)
+                {
+                    break;
+                }
+            } while (!result.IsHalt);
         }
 
         public static LineAssembleResult ExecuteLine(string line,int lineNumber=0)
