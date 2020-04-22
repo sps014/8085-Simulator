@@ -14,12 +14,15 @@ namespace μp101.Core
                 {"MOV",InstructionSet.MOV },
                 {"MVI",InstructionSet.MVI },
                 {"ADD",InstructionSet.ADD },
-                {"ADI",InstructionSet.ADI }
+                {"ADI",InstructionSet.ADI },
+                {"HLT",InstructionSet.HLT }
             };
         private static string Code = null;
         private static string[] Lines;
 
-        public static Dictionary<string, int> LabelsCollection { get; set; } = new Dictionary<string, int>();
+        public static Dictionary<string, int> LabelsCollection { get; set; } 
+        = new Dictionary<string, int>();
+        
         private static LineAssembleResult CurrentResult = null;
 
         public static void LoadToAssembly(string code)
@@ -29,7 +32,7 @@ namespace μp101.Core
             CurrentResult = null;
             LabelsCollection = new Dictionary<string, int>();
         }
-        public static void ExecuteRemaining()
+        public static IEnumerable<LineAssembleResult> ExecuteRemaining()
         {
             int beginFrom = CurrentResult == null ? 0 : CurrentResult.FutureLineNumber;
             LineAssembleResult result;
@@ -40,6 +43,14 @@ namespace μp101.Core
                 {
                     break;
                 }
+                if(result.FutureLineNumber>=Lines.Length)
+                {
+                    break;
+                }
+                beginFrom = result.FutureLineNumber;
+
+                yield return result;
+
             } while (!result.IsHalt);
         }
 
@@ -51,6 +62,7 @@ namespace μp101.Core
             }
 
             LineAssembleResult result = new LineAssembleResult();
+            result.LineNumber = lineNumber;
 
             string word = FetchMainWord(line,result);
 

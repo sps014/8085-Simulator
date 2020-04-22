@@ -10,6 +10,8 @@ namespace μp101.Core
     {
         public static void MOV(string line,LineAssembleResult result)
         {
+            result.FutureLineNumber = result.LineNumber + 1;
+
             var match = Regex.Match(line, @"MOV\s+(\w)\s*\,\s*(\w)");
             if(match.Success)
             {
@@ -36,6 +38,8 @@ namespace μp101.Core
         }
         public static void MVI(string line,LineAssembleResult result)
         {
+            result.FutureLineNumber = result.LineNumber + 1;
+
             var match = Regex.Match(line, @"MVI\s+([\w])\s*\,\s*(\d{1,}H?)");
             if(match.Success)
             {
@@ -79,6 +83,8 @@ namespace μp101.Core
         }
         public static void ADD(string line, LineAssembleResult result)
         {
+            result.FutureLineNumber = result.LineNumber + 1;
+
             var match = Regex.Match(line, @"ADD\s+([\w])");
             if (match.Success)
             {
@@ -103,6 +109,9 @@ namespace μp101.Core
         }
         public static void ADI(string line, LineAssembleResult result)
         {
+            result.FutureLineNumber = result.LineNumber + 1;
+
+
             var match = Regex.Match(line, @"ADI\s+(\d{1,}H?)");
             if (match.Success)
             {
@@ -135,6 +144,20 @@ namespace μp101.Core
             }
         }
 
+        public static void HLT(string line, LineAssembleResult result)
+        {
+
+            var match = Regex.Match(line, @"HLT");
+            if (match.Success)
+            {
+                result.IsHalt = true;
+            }
+            else
+            {
+                result.SetError("HLT instruction is incorrectly formatted");
+                return;
+            }
+        }
 
     }
 }
