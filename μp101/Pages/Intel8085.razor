@@ -99,12 +99,16 @@ HLT";
     }
     void RunAll()
     {
+        Console.WriteLine("Executing Code in Assembly");
+
         foreach (LineAssembleResult res in Assembler.ExecuteRemaining())
         {
             Console.WriteLine("Error"+res.ErrorMessage);
             Console.WriteLine("REg Count" + res.RegistersChanged.Count);
             result.Add(res);
         }
+
+        Refresh();
     }
     void ResetAll()
     {

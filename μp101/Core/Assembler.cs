@@ -34,6 +34,7 @@ namespace μp101.Core
         }
         public static IEnumerable<LineAssembleResult> ExecuteRemaining()
         {
+            CurrentResult = CurrentResult == null ? null :CurrentResult.IsHalt?null:CurrentResult;
             int beginFrom = CurrentResult == null ? 0 : CurrentResult.FutureLineNumber;
             LineAssembleResult result;
             do
