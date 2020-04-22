@@ -38,6 +38,8 @@
 
     </DualGridHolder>
 
+<Snackbar @ref="snackbar">Hello there</Snackbar>
+
 <style>
     body {
         background-repeat: no-repeat;
@@ -58,6 +60,7 @@
     protected DataTab dataTab { get; set; }
     protected FlagsTab flagsTab { get; set; }
     protected MemoryTab memoryTab { get; set; }
+    protected Snackbar snackbar { get; set; }
 
     string code = @"MVI B,15H
 ADD B
@@ -68,6 +71,7 @@ HLT";
     void LoadAssembly()
     {
         Assembler.LoadToAssembly(code);
+        snackbar.Show();
         Console.WriteLine("Loaded Code in Assembly");
     }
     void RunLine()
