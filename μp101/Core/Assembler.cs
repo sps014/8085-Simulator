@@ -54,6 +54,23 @@ namespace μp101.Core
 
             } while (!result.IsHalt);
         }
+        public static LineAssembleResult ExecuteSingle()
+        {
+            CurrentResult = CurrentResult == null ? null : CurrentResult.IsHalt ? null : CurrentResult;
+            int beginFrom = CurrentResult == null ? 0 : CurrentResult.FutureLineNumber;
+            LineAssembleResult result;
+            result = ExecuteLine(Lines[beginFrom], beginFrom);
+            if (result == null)
+            {
+                return null;
+            }
+            if (result.FutureLineNumber >= Lines.Length)
+            {
+                return null;
+            }
+            CurrentResult = result;
+             return result;
+        }
 
         public static LineAssembleResult ExecuteLine(string line,int lineNumber=0)
         {
