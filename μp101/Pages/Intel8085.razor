@@ -69,16 +69,16 @@ HLT";
 
         if (firstRender)
         {
-            Assembler.LoadToAssembly(code);
-            var ress = Assembler.ExecuteLine("MVI B,15H");
-            Console.WriteLine(ress.ErrorMessage);
-            Console.WriteLine(I8085.B.Value);
-            res.Add(ress);
-            ress = Assembler.ExecuteLine("ADD B");
-            res.Add(ress);
-            ress = Assembler.ExecuteLine("ADI 9H");
-            res.Add(ress);
-            Assembler.Execute();
+            //Assembler.LoadToAssembly(code);
+            //var ress = Assembler.ExecuteLine("MVI B,15H");
+            //Console.WriteLine(ress.ErrorMessage);
+            //Console.WriteLine(I8085.B.Value);
+            //res.Add(ress);
+            //ress = Assembler.ExecuteLine("ADD B");
+            //res.Add(ress);
+            //ress = Assembler.ExecuteLine("ADI 9H");
+            //res.Add(ress);
+            //Assembler.Execute();
 
             Refresh();
 
@@ -90,7 +90,7 @@ HLT";
 
     void LoadAssembly()
     {
-
+        Assembler.LoadToAssembly(code);
     }
     void RunLine()
     {
@@ -98,7 +98,12 @@ HLT";
     }
     void RunAll()
     {
+        foreach (LineAssembleResult res in Assembler.ExecuteRemaining())
+        {
+            Console.WriteLine("Error"+res.ErrorMessage);
+            Console.WriteLine("REg Count" + res.RegistersChanged.Count);
 
+        }
     }
     void ResetAll()
     {

@@ -48,7 +48,7 @@ namespace μp101.Core
                     break;
                 }
                 beginFrom = result.FutureLineNumber;
-
+                CurrentResult = result;
                 yield return result;
 
             } while (!result.IsHalt);
