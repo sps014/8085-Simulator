@@ -26,17 +26,6 @@
                 </TableItem>
             }
 
-            @foreach (Flag flag in res.FlagsChanged)
-            {
-                <TableItem>
-                    <TableValue>@(flag.Name)</TableValue>
-                    <TableValue>@(Convert.ToInt32(flag.Value))</TableValue>
-                    <TableValue>@(flag.Value)</TableValue>
-                    <TableValue>Flag</TableValue>
-
-                </TableItem>
-            }
-
         }
     </TableHolder>
 }

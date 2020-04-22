@@ -16,8 +16,20 @@ namespace μp101.Core
                 {"ADD",InstructionSet.ADD },
                 {"ADI",InstructionSet.ADI }
             };
+        private static string Code = null;
 
-        public static Dictionary<string, int> LabelsCollection = new Dictionary<string, int>();
+        public static Dictionary<string, int> LabelsCollection { get; set; } = new Dictionary<string, int>();
+
+        public static void LoadToAssembly(string code)
+        {
+            Code = code;
+            LabelsCollection = new Dictionary<string, int>();
+        }
+        public static void Execute()
+        {
+            var lines = Code.Split("\r\n");
+            Console.WriteLine(lines.Length+lines[0]);
+        }
 
         public static LineAssembleResult ExecuteLine(string line,int lineNumber=0)
         {

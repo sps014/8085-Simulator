@@ -69,6 +69,7 @@ HLT";
 
         if (firstRender)
         {
+            Assembler.LoadToAssembly(code);
             var ress = Assembler.ExecuteLine("MVI B,15H");
             Console.WriteLine(ress.ErrorMessage);
             Console.WriteLine(I8085.B.Value);
@@ -77,6 +78,7 @@ HLT";
             res.Add(ress);
             ress = Assembler.ExecuteLine("ADI 9H");
             res.Add(ress);
+            Assembler.Execute();
 
             Refresh();
 
