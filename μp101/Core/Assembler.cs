@@ -90,10 +90,24 @@ namespace μp101.Core
 
             return null;
         }
+        private static void ExtractLabel(ref string line,int number)
+        {
+            var match = Regex.Match(line, @"\b([\w]*)\s*\:");
+            if(match.Success)
+            {
+                var gp = match.Groups[1].Value.ToUpper();
+                if(!LabelsCollection.ContainsKey(gp))
+                {
+                    LabelsCollection.Add(gp, number);
+                    line = line.Replace(match.Groups[0].Value, string.Empty);
+                }
+            }
+        }
         private static void ProcessWord(string word,string line,LineAssembleResult assembleResult)
         {
             if(MnmonicsExecuter.ContainsKey(word.ToUpper()))
             {
+                ExtractLabel(ref line, assembleResult.LineNumber);
                 MnmonicsExecuter[word](line.ToUpper(), assembleResult);
             }
             else
