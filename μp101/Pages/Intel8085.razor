@@ -73,7 +73,10 @@ HLT";
     void RunLine()
     {
         Console.WriteLine("Executing a single Line in Assembly");
-        Assembler.ExecuteSingle();
+        var res=Assembler.ExecuteSingle();
+        if (res != null)
+            result.Add(res);
+        Refresh();
     }
     void RunAll()
     {
