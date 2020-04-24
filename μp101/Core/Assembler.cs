@@ -28,7 +28,6 @@ namespace μp101.Core
         public static void LoadToAssembly(string code)
         {
             Code = code;
-            Console.WriteLine(code);
             Lines = code.Split("\r\n");
             CurrentResult = null;
             LabelsCollection = new Dictionary<string, int>();
@@ -83,7 +82,7 @@ namespace μp101.Core
              return result;
         }
 
-        public static LineAssembleResult ExecuteLine(string line,int lineNumber=0)
+        private static LineAssembleResult ExecuteLine(string line,int lineNumber=0)
         {
             if(string.IsNullOrWhiteSpace(line))
             {

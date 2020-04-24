@@ -98,6 +98,8 @@ HLT";
             }
             result.Add(res);
         }
+        snackbar.BackgroundColor = "red";
+        snackbar.Show("Line:" + res.LineNumber + "\r\n" + res.ErrorMessage);
         Refresh();
     }
     void RunAll()
