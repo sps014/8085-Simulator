@@ -44,7 +44,6 @@ namespace μp101.Core
             if(match.Success)
             {
                 Register to = AssemblyUtility.IsRegister(match.Groups[1].Value);
-                Console.WriteLine(line);
                 if(to!=null)
                 {
                     bool valueHexType = match.Groups[2].Value.ToLower().IndexOf("h") > 0;

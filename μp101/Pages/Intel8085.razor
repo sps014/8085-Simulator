@@ -99,8 +99,6 @@ HLT";
             }
             result.Add(res);
         }
-        snackbar.BackgroundColor = "red";
-        snackbar.Show("Line:" + res.LineNumber + "\r\n" + res.ErrorMessage);
         Refresh();
     }
     void RunAll()
@@ -114,8 +112,17 @@ HLT";
         }
         foreach (LineAssembleResult res in Assembler.ExecuteRemaining())
         {
-            Console.WriteLine("Error"+res.ErrorMessage);
-            Console.WriteLine("REg Count" + res.RegistersChanged.Count);
+            if (res != null)
+            {
+                if (res.Result == AssembleOutcome.Failed)
+                {
+                    snackbar.BackgroundColor = "red";
+                    snackbar.Show("Line:" + res.LineNumber + "\r\n" + res.ErrorMessage);
+                    result.Clear();
+                    return;
+                }
+                result.Add(res);
+            }
             result.Add(res);
         }
 
