@@ -62,7 +62,7 @@
     protected MemoryTab memoryTab { get; set; }
     protected Snackbar snackbar { get; set; }
 
-    string code = @"MVI B,15H
+    string code { get; set; } = @"MVI B,15H
 S1:ADD B
 ADI 09H
 HLT";
@@ -72,29 +72,38 @@ HLT";
     {
         Assembler.LoadToAssembly(code);
         snackbar.BackgroundColor = "green";
-        snackbar.Show("Loaded Code in the Assembly");
+        snackbar.Show("Loaded instructions in the Assembly");
 
     }
     void RunLine()
     {
         if(Assembler.Code==null)
         {
-            snackbar.BackgroundColor = "yellow";
+            snackbar.BackgroundColor = "#b8860b";
             snackbar.Show("First Load instructions in assembler");
             return;
         }
         Console.WriteLine("Executing a single Line in Assembly");
         var res=Assembler.ExecuteSingle();
         if (res != null)
+        {
+            if(res.Result==AssembleOutcome.Failed)
+            {
+                snackbar.BackgroundColor = "red";
+                snackbar.Show("Line:"+res.LineNumber+"\r\n"+res.ErrorMessage);
+                result.Clear();
+                return;
+            }
             result.Add(res);
+        }
         Refresh();
     }
     void RunAll()
     {
         if (Assembler.Code == null)
         {
-            snackbar.BackgroundColor = "yellow";
-            snackbar.Color = "black";
+            snackbar.BackgroundColor = "#b8860b";
+            //snackbar.Color = "black";
             snackbar.Show("First Load instructions in assembler");
             return;
         }

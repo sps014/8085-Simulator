@@ -40,10 +40,11 @@ namespace μp101.Core
         {
             result.FutureLineNumber = result.LineNumber + 1;
 
-            var match = Regex.Match(line, @"MVI\s+([\w])\s*\,\s*(\d{1,}H?)");
+            var match = Regex.Match(line, @"MVI\s+([a-zA-Z])\s*\,\s*(\d{1,}H?)");
             if(match.Success)
             {
                 Register to = AssemblyUtility.IsRegister(match.Groups[1].Value);
+                Console.WriteLine(line);
                 if(to!=null)
                 {
                     bool valueHexType = match.Groups[2].Value.ToLower().IndexOf("h") > 0;

@@ -28,6 +28,7 @@ namespace μp101.Core
         public static void LoadToAssembly(string code)
         {
             Code = code;
+            Console.WriteLine(code);
             Lines = code.Split("\r\n");
             CurrentResult = null;
             LabelsCollection = new Dictionary<string, int>();
