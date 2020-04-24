@@ -86,7 +86,6 @@ HLT";
             snackbar.Show("First Load instructions in assembler");
             return;
         }
-        Console.WriteLine("Executing a single Line in Assembly");
         var res=Assembler.ExecuteSingle();
         if (res != null)
         {
@@ -119,7 +118,7 @@ HLT";
                     snackbar.BackgroundColor = "red";
                     snackbar.Show("Line:" + res.LineNumber + "\r\n" + res.ErrorMessage);
                     result.Clear();
-                    return;
+                    break;
                 }
                 result.Add(res);
             }

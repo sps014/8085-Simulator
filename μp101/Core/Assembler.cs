@@ -33,12 +33,14 @@ namespace μp101.Core
             CurrentResult = null;
             LabelsCollection = new Dictionary<string, int>();
         }
-        public static IEnumerable<LineAssembleResult> ExecuteRemaining()
+        public static List<LineAssembleResult> ExecuteRemaining()
         {
+            var allResults = new List<LineAssembleResult>();
             if(Code==null)
             {
-                yield return new LineAssembleResult() 
-                { Result = AssembleOutcome.Failed, ErrorMessage = "No code loaded in assembly." };
+                allResults.Add(new LineAssembleResult() 
+                { Result = AssembleOutcome.Failed, ErrorMessage = "No code loaded in assembly." });
+                return allResults;
             }
 
             CurrentResult = CurrentResult == null ? null :CurrentResult.IsHalt?null:CurrentResult;
@@ -57,13 +59,16 @@ namespace μp101.Core
                 }
                 if(result.Result==AssembleOutcome.Failed)
                 {
+                    allResults.Add(result);
                     break;
                 }
                 beginFrom = result.FutureLineNumber;
                 CurrentResult = result;
-                yield return result;
+                allResults.Add(result);
 
             } while (!result.IsHalt);
+
+            return allResults;
         }
         public static LineAssembleResult ExecuteSingle()
         {
@@ -79,8 +84,11 @@ namespace μp101.Core
             {
                 return null;
             }
-            CurrentResult = result;
-             return result;
+            if(result.Result!=AssembleOutcome.Failed)
+            {
+                CurrentResult = result;
+            }
+            return result;
         }
 
         private static LineAssembleResult ExecuteLine(string line,int lineNumber=0)
