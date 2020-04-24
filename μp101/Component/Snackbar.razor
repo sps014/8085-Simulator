@@ -1,5 +1,5 @@
 ﻿
-<div class="@(Visible?"show":"")" id="snackbar">@ChildContent</div>
+<div class="@(Visible?"show":"")" id="snackbar">@Message</div>
 
 <style>
     #snackbar {
@@ -7,7 +7,7 @@
   min-width: 250px;
   margin-left: -125px;
   background-color: @BackgroundColor;
-  color: #fff;
+  color: @Color;
   text-align: center;
   border-radius: 2px;
   padding: 16px;
@@ -31,9 +31,11 @@
     [Parameter]
     public bool Visible { get; set; }
     [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    public string Message { get; set; }
     [Parameter]
     public string BackgroundColor { get; set; } = "#333";
+    [Parameter]
+    public string Color { get; set; } = "##fff";
     [Parameter]
     public long Interval { get; set; } = 5000;
     private System.Timers.Timer timer = new System.Timers.Timer();
@@ -48,8 +50,10 @@
             StateHasChanged();
         };
     }
-    public void Show()
+    public void Show(string msg=null)
     {
+        if (msg != null)
+            Message = msg;
         Visible = true;
         timer.Interval = Interval;
         timer.Enabled = true;

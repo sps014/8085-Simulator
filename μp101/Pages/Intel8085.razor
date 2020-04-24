@@ -63,7 +63,7 @@
     protected Snackbar snackbar { get; set; }
 
     string code = @"MVI B,15H
-ADD B
+S1:ADD B
 ADI 09H
 HLT";
 
@@ -71,8 +71,9 @@ HLT";
     void LoadAssembly()
     {
         Assembler.LoadToAssembly(code);
-        snackbar.Show();
-        Console.WriteLine("Loaded Code in Assembly");
+        snackbar.BackgroundColor = "green";
+        snackbar.Show("Loaded Code in Assembly");
+
     }
     void RunLine()
     {

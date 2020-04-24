@@ -17,7 +17,7 @@ namespace μp101.Core
                 {"ADI",InstructionSet.ADI },
                 {"HLT",InstructionSet.HLT }
             };
-        private static string Code = null;
+        public static string Code { get; private set; } = null;
         private static string[] Lines;
 
         public static Dictionary<string, int> LabelsCollection { get; set; } 
@@ -34,6 +34,12 @@ namespace μp101.Core
         }
         public static IEnumerable<LineAssembleResult> ExecuteRemaining()
         {
+            if(Code==null)
+            {
+                yield return new LineAssembleResult() 
+                { Result = AssembleOutcome.Failed, ErrorMessage = "No code loaded in assembly." };
+            }
+
             CurrentResult = CurrentResult == null ? null :CurrentResult.IsHalt?null:CurrentResult;
             int beginFrom = CurrentResult == null ? 0 : CurrentResult.FutureLineNumber;
             LineAssembleResult result;
@@ -97,8 +103,10 @@ namespace μp101.Core
         }
         private static string FetchMainWord(string line,LineAssembleResult result)
         {
-            
-            var match=Regex.Match(line, @"\s*(\w+)\s*");
+            ExtractLabel(ref line, result.LineNumber);
+
+
+            var match =Regex.Match(line, @"\s*(\w+)\s*");
             if(match.Success)
             {
                 if(match.Groups[1].Value.Length>=1)
@@ -129,7 +137,6 @@ namespace μp101.Core
         {
             if(MnmonicsExecuter.ContainsKey(word.ToUpper()))
             {
-                ExtractLabel(ref line, assembleResult.LineNumber);
                 MnmonicsExecuter[word](line.ToUpper(), assembleResult);
             }
             else
