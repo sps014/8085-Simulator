@@ -11,7 +11,7 @@
   
     <DualGridHolder>
         <DualCard CardColor="mdb-color darken-3" TotalColumns="4">
-            <CodeCell Width="100%" Height="78vh" Mnemonics="@(code)" TopBottomMargin="20px" />
+            <CodeCell Width="100%" Height="78vh" Mnemonics="@(code)" TopBottomMargin="20px" @ref="cell"/>
         </DualCard>
         <DualCard CardColor="grey darken-4" TotalColumns="8">
             <TabHolder TabIDs="Tabs">
@@ -56,6 +56,8 @@
     private string[] Tabs = new string[] {"Data","Registers","Flags","Memory","Utility" };
     List<LineAssembleResult> result { get; set; } = new List<LineAssembleResult>();
 
+    public CodeCell cell { get; set; }
+
     protected RegisterTab registerTab { get; set; }
     protected DataTab dataTab { get; set; }
     protected FlagsTab flagsTab { get; set; }
@@ -68,9 +70,9 @@ ADI 09H
 HLT";
 
 
-    void LoadAssembly()
+    async void LoadAssembly()
     {
-        Assembler.LoadToAssembly(code);
+        Assembler.LoadToAssembly(await cell.GetText());
         snackbar.BackgroundColor = "green";
         snackbar.Show("Loaded instructions in the Assembly");
 

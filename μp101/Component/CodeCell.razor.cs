@@ -53,6 +53,10 @@ namespace μp101.Component
         {
             await Runtime.InvokeVoidAsync("createCodeCell", idStr);
         }
+        public ValueTask<string> GetText()
+        {
+            return Runtime.InvokeAsync<string>("getInnerCodeCellText",idStr);
+        }
 
         public enum ProcessorTypes
         {

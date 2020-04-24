@@ -1,5 +1,5 @@
 ﻿function getInnerCodeCellText(cell) {
-    return cell.innerText;
+    return editors[cell].getValue();
 }
 var editors = new Object();
 function createCodeCell(cell) {
@@ -13,6 +13,7 @@ function createCodeCell(cell) {
             lineWrapping: true,
             styleActiveLine: { nonEmpty: true }
         });
+        
     }
     catch (e) {
         console.error(e);
