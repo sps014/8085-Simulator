@@ -72,11 +72,17 @@ HLT";
     {
         Assembler.LoadToAssembly(code);
         snackbar.BackgroundColor = "green";
-        snackbar.Show("Loaded Code in Assembly");
+        snackbar.Show("Loaded Code in the Assembly");
 
     }
     void RunLine()
     {
+        if(Assembler.Code==null)
+        {
+            snackbar.BackgroundColor = "yellow";
+            snackbar.Show("First Load instructions in assembler");
+            return;
+        }
         Console.WriteLine("Executing a single Line in Assembly");
         var res=Assembler.ExecuteSingle();
         if (res != null)
@@ -85,8 +91,12 @@ HLT";
     }
     void RunAll()
     {
-        Console.WriteLine("Executing Code in Assembly");
-
+        if (Assembler.Code == null)
+        {
+            snackbar.BackgroundColor = "yellow";
+            snackbar.Show("First Load instructions in assembler");
+            return;
+        }
         foreach (LineAssembleResult res in Assembler.ExecuteRemaining())
         {
             Console.WriteLine("Error"+res.ErrorMessage);
