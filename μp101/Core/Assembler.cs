@@ -18,7 +18,7 @@ namespace μp101.Core
                 {"HLT",InstructionSet.HLT }
             };
         public static string Code { get; private set; } = null;
-        private static string[] Lines;
+        private static List<string> Lines=new List<string>();
 
         public static Dictionary<string, int> LabelsCollection { get; set; } 
         = new Dictionary<string, int>();
@@ -28,7 +28,8 @@ namespace μp101.Core
         public static void LoadToAssembly(string code)
         {
             Code = code;
-            Lines = code.Split("\r\n");
+            Lines.Clear();
+            Lines.AddRange(code.Split(new char[] { '\n' }));
             CurrentResult = null;
             LabelsCollection = new Dictionary<string, int>();
         }
@@ -50,7 +51,7 @@ namespace μp101.Core
                 {
                     break;
                 }
-                if(result.FutureLineNumber>=Lines.Length)
+                if(result.FutureLineNumber>=Lines.Count)
                 {
                     break;
                 }
@@ -74,7 +75,7 @@ namespace μp101.Core
             {
                 return null;
             }
-            if (result.FutureLineNumber >= Lines.Length)
+            if (result.FutureLineNumber >= Lines.Count)
             {
                 return null;
             }
@@ -141,7 +142,7 @@ namespace μp101.Core
             }
             else
             {
-                assembleResult.SetError("Unidentified keyword:" + word);
+                assembleResult.SetError("Unidentified instruction :" + word);
             }
         }
 
