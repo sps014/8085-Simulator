@@ -170,6 +170,10 @@ namespace μp101.Core
             }
             ExtraCharacterChecks(line, assembleResult);
         }
+        public static void Reset()
+        {
+
+        }
 
         public delegate void Processable(ref string line, LineAssembleResult result);
 

@@ -72,7 +72,6 @@ HLT";
 
     async void LoadAssembly()
     {
-        AssemblyUtility.AddAdjustFlags(28, 12);
         result.Clear();
         Assembler.LoadToAssembly(await cell.GetText());
         snackbar.BackgroundColor = "green";
