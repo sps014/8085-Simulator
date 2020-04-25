@@ -2,10 +2,10 @@
 @if (Results != null)
 {
     <TableHolder ColumnNames="TableTitle">
-        @foreach (LineAssembleResult res in Results)
+        @foreach (LineAssembleResult res in Results.Distinct())
         {
 
-            @foreach (Register r in res.RegistersChanged)
+            @foreach (Register r in res.RegistersChanged.Distinct())
             {
                 <TableItem>
                     <TableValue>@(r.Name)</TableValue>
@@ -15,7 +15,7 @@
 
                 </TableItem>
             }
-            @foreach (Memory m in res.MemoriesChanged)
+            @foreach (Memory m in res.MemoriesChanged.Distinct())
             {
                 <TableItem>
                     <TableValue>@(Array.IndexOf(I8085.Memory, m))</TableValue>
