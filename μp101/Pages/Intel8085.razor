@@ -75,6 +75,8 @@ HLT";
     {
         result.Clear();
         Assembler.LoadToAssembly(await cell.GetText());
+        snackbar.BackgroundColor = "green";
+        snackbar.Show("Loaded instructions..");
 
     }
     void RunLine()
