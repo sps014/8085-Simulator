@@ -49,8 +49,12 @@ namespace μp101.Core
                 }
                 sum = res.Item1 + sum;
             }
+            
+            I8085.Flag_Z.Value = (sum == "00000000")?true:false;
+            
             I8085.Flag_C.Value = Convert.ToBoolean(c);
 
+            I8085.Flag_P.Value=(Count1s((byte)(value1+value2+c))%2==0)?true:false;
         }
         /// <summary>
         /// sum , carry returns
@@ -95,6 +99,18 @@ namespace μp101.Core
         public static byte Compliment(byte b)
         {
             return (byte)(255 - b);
+        }
+        private static int Count1s(byte b)
+        {
+            string val2 = Convert.ToString(b, 2).PadLeft(8, '0');
+
+            int c=0;
+            for (int i = 7; i >= 0; i--)
+            {
+                if (val2[i] == '1')
+                    c++;
+            }
+            return c;
         }
     }
 }
