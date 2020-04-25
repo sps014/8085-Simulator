@@ -674,6 +674,35 @@ namespace μp101.Core
                 return;
             }
         }
+        public static void DCR(ref string line, LineAssembleResult result)
+        {
+            result.FutureLineNumber = result.LineNumber + 1;
+
+            var match = Regex.Match(line, @"DCR\s+([\w])");
+            if (match.Success)
+            {
+                Register from = AssemblyUtility.IsRegister(match.Groups[1].Value);
+                if (from != null)
+                {
+                    AssemblyUtility.SubAdjustFlags(from.Value, 1);
+                    from.Value -= 1;
+                    result.RegistersChanged.Add(I8085.A);
+
+                }
+                else
+                {
+                    result.SetError("DCR instruction work with  Register Only.");
+                    return;
+                }
+                line = line.Replace(match.Groups[0].Value, string.Empty);
+            }
+            else
+            {
+                result.SetError("DCR instruction is incorrectly formatted");
+                return;
+            }
+        }
+
 
 
     }
