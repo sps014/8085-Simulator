@@ -154,7 +154,7 @@ namespace μp101.Core
             }
         }
 
-        public delegate void Processable(string line, LineAssembleResult result);
+        public delegate void Processable(ref string line, LineAssembleResult result);
 
         public enum ExecutionType
         {
