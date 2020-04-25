@@ -286,6 +286,76 @@ namespace μp101.Core
             }
         }
 
+        public static void SBB(ref string line, LineAssembleResult result)
+        {
+            result.FutureLineNumber = result.LineNumber + 1;
+
+            var match = Regex.Match(line, @"SBB\s+([\w])");
+            if (match.Success)
+            {
+                Register from = AssemblyUtility.IsRegister(match.Groups[1].Value);
+                if (from != null)
+                {
+                    I8085.A.Value -= from.Value;
+                    I8085.A.Value -= (byte)(I8085.Flag_C.Value ? 1 : 0);
+                    //AssemblyUtility.AddAdjustFlags(I8085.A.Value, from.Value);
+                    result.RegistersChanged.Add(I8085.A);
+
+                }
+                else
+                {
+                    result.SetError("SBB instruction work with  Register Only.");
+                    return;
+                }
+                line = line.Replace(match.Groups[0].Value, string.Empty);
+            }
+            else
+            {
+                result.SetError("SBB instruction is incorrectly formatted");
+                return;
+            }
+        }
+        public static void SBI(ref string line, LineAssembleResult result)
+        {
+            result.FutureLineNumber = result.LineNumber + 1;
+
+
+            var match = Regex.Match(line, @"SBI\s+(\d{1,}H?)");
+            if (match.Success)
+            {
+                bool valueHexType = match.Groups[1].Value.ToLower().IndexOf("h") > 0;
+                byte value;
+                if (valueHexType)
+                {
+                    string val = match.Groups[1].Value.ToLower().Replace("h", string.Empty);
+                    value = Convert.ToByte(val, 16);
+                }
+                else
+                {
+                    value = Convert.ToByte(match.Groups[1].Value, 10);
+                }
+                if (value >= 0 && value <= 255)
+                {
+                    I8085.A.Value -= value;
+                    I8085.A.Value -= (byte)(I8085.Flag_C.Value ? 1 : 0);
+                    //AssemblyUtility.AddAdjustFlags(I8085.A.Value, value);
+                    result.RegistersChanged.Add(I8085.A);
+                }
+                else
+                {
+                    result.SetError("SBI should utilized 8 bit data only ie from 00-FF or 0-255");
+                    return;
+                }
+                line = line.Replace(match.Groups[0].Value, string.Empty);
+            }
+            else
+            {
+                result.SetError("SBI instruction is incorrectly formatted");
+                return;
+            }
+        }
+
+
         public static void HLT(ref string line, LineAssembleResult result)
         {
 

@@ -20,7 +20,9 @@ namespace μp101.Core
                 {"ACI",InstructionSet.ACI },
                 {"ADC",InstructionSet.ADC },
                 {"SUB",InstructionSet.SUB },
-                {"SUI",InstructionSet.SUI }
+                {"SUI",InstructionSet.SUI },
+                {"SBB",InstructionSet.SBB },
+                {"SBI",InstructionSet.SBI }
             };
         public static string Code { get; private set; } = null;
         private static List<string> Lines=new List<string>();
