@@ -84,6 +84,7 @@ namespace μp101.Core
                 return;
             }
         }
+
         public static void ADD(ref string line, LineAssembleResult result)
         {
             result.FutureLineNumber = result.LineNumber + 1;
