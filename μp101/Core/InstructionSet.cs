@@ -20,8 +20,26 @@ namespace μp101.Core
 
                 if (to!=null && from != null)
                 {
-                    to.Value = from.Value;
-                    result.RegistersChanged.Add(to);
+                    if (match.Groups[1].Value == "M" && match.Groups[2].Value == "M")
+                    {
+                        I8085.M = I8085.M;
+                    }
+                    else if (match.Groups[1].Value == "M")
+                    {
+                        I8085.Memory[I8085.M].Data = from.Value;
+                        result.RegistersChanged.Add(new Register(I8085.M.ToString().PadLeft(4,'0'),
+                            null, I8085.Memory[I8085.M].Data));
+                    }
+                    else if (match.Groups[2].Value == "M")
+                    {
+                        to.Value = I8085.Memory[I8085.M].Data;
+                        result.RegistersChanged.Add(to);
+                    }
+                    else
+                    {
+                        to.Value = from.Value;
+                        result.RegistersChanged.Add(to);
+                    }
 
                 }
                 else

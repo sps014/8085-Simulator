@@ -58,11 +58,10 @@ namespace μp101.Core
         {
             Value = Memory.FromHex_2(str);
         }
-        public Register(string n, Register pair = null)
+        public Register(string n, Register pair = null,byte val=0)
         {
             Name = n;
-
-
+            Value = val;
             Pair = pair;
         }
     }
