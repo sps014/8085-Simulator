@@ -68,8 +68,7 @@ namespace μp101.Core
             {
                 byte a = (byte)(val1[i] == '0' ? 0 : 1);
                 byte b = (byte)(val2[i] == '0' ? 0 : 1);
-                var res = AddBit(a, b, c);
-                c = res.Item2;
+                var res = AddBit(a, b);
                 if (i == 8)
                 {
                     I8085.Flag_AC.Value = Convert.ToBoolean(res.Item2);
@@ -79,11 +78,10 @@ namespace μp101.Core
 
             I8085.Flag_Z.Value = (sum == "00000000") ? true : false;
 
-            I8085.Flag_C.Value = Convert.ToBoolean(c);
 
-            I8085.Flag_S.Value = (value1 + value2 + c) >= 0 ? true : false;
+            I8085.Flag_S.Value = (value1 + value2 ) >= 0 ? true : false;
 
-            I8085.Flag_P.Value = (Count1s((byte)(value1 + value2 + c)) % 2 == 0) ? true : false;
+            I8085.Flag_P.Value = (Count1s((byte)(value1 + value2)) % 2 == 0) ? true : false;
         }
 
         public static void SubAdjustFlags(byte value1, byte value2, byte c = 0)

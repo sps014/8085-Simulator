@@ -687,7 +687,7 @@ namespace μp101.Core
                     {
                         AssemblyUtility.AddAdjustFlags(I8085.M, 1,false);
                         I8085.M += 1;
-                        result.RegistersChanged.Add(new Register("M",
+                        result.RegistersChanged.Add(new Register(I8085.M.ToString().PadLeft(4, '0'),
                                                    null, I8085.Memory[I8085.M].Data));
                     }
                     else
@@ -725,7 +725,7 @@ namespace μp101.Core
                     {
                         AssemblyUtility.AddAdjustFlags(I8085.M, 1, false);
                         I8085.M -= 1;
-                        result.RegistersChanged.Add(new Register("M",
+                        result.RegistersChanged.Add(new Register(I8085.M.ToString().PadLeft(4, '0'),
                                                    null, I8085.Memory[I8085.M].Data));
                     }
                     else
