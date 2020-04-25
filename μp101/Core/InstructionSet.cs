@@ -683,9 +683,19 @@ namespace μp101.Core
                 Register from = AssemblyUtility.IsRegister(match.Groups[1].Value);
                 if (from != null)
                 {
-                    AssemblyUtility.AddAdjustFlags(from.Value,1);
-                    from.Value+=1;
-                    result.RegistersChanged.Add(I8085.A);
+                    if(match.Groups[1].Value=="M")
+                    {
+                        AssemblyUtility.AddAdjustFlags(I8085.M, 1,false);
+                        I8085.M += 1;
+                        result.RegistersChanged.Add(new Register("M",
+                                                   null, I8085.Memory[I8085.M].Data));
+                    }
+                    else
+                    {
+                        AssemblyUtility.AddAdjustFlags(from.Value,1);
+                        from.Value += 1;
+                        result.RegistersChanged.Add(from);
+                    }
 
                 }
                 else
@@ -711,9 +721,19 @@ namespace μp101.Core
                 Register from = AssemblyUtility.IsRegister(match.Groups[1].Value);
                 if (from != null)
                 {
-                    AssemblyUtility.SubAdjustFlags(from.Value, 1);
-                    from.Value -= 1;
-                    result.RegistersChanged.Add(I8085.A);
+                    if (match.Groups[1].Value == "M")
+                    {
+                        AssemblyUtility.AddAdjustFlags(I8085.M, 1, false);
+                        I8085.M -= 1;
+                        result.RegistersChanged.Add(new Register("M",
+                                                   null, I8085.Memory[I8085.M].Data));
+                    }
+                    else
+                    {
+                        AssemblyUtility.SubAdjustFlags(from.Value, 1,false);
+                        from.Value -= 1;
+                        result.RegistersChanged.Add(I8085.A);
+                    }
 
                 }
                 else
