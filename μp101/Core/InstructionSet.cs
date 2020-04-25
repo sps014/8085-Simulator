@@ -29,6 +29,8 @@ namespace μp101.Core
                     return;
                 }
 
+                line = line.Replace(match.Groups[0].Value,string.Empty);
+
             }
             else
             {
@@ -68,6 +70,7 @@ namespace μp101.Core
                         result.SetError("MVI should utilized 8 bit data only ie from 00-FF or 0-255");
                         return;
                     }
+                    line = line.Replace(match.Groups[0].Value, string.Empty);
                 }
                 else
                 {
@@ -100,6 +103,7 @@ namespace μp101.Core
                     result.SetError("MVI instruction work with Register to Register Only.");
                     return;
                 }
+                line = line.Replace(match.Groups[0].Value, string.Empty);
             }
             else
             {
@@ -136,6 +140,7 @@ namespace μp101.Core
                     result.SetError("ADI should utilized 8 bit data only ie from 00-FF or 0-255");
                     return;
                 }
+                line = line.Replace(match.Groups[0].Value, string.Empty);
             }
             else
             {
@@ -151,6 +156,7 @@ namespace μp101.Core
             if (match.Success)
             {
                 result.IsHalt = true;
+                line = line.Replace(match.Groups[0].Value, string.Empty);
             }
             else
             {
