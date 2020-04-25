@@ -101,7 +101,7 @@ namespace μp101.Core
                 }
                 else
                 {
-                    result.SetError("MVI instruction work with Register to Register Only.");
+                    result.SetError("ADD instruction work with  Register Only.");
                     return;
                 }
                 line = line.Replace(match.Groups[0].Value, string.Empty);
@@ -150,6 +150,35 @@ namespace μp101.Core
                 return;
             }
         }
+        public static void ADC(ref string line, LineAssembleResult result)
+        {
+            result.FutureLineNumber = result.LineNumber + 1;
+
+            var match = Regex.Match(line, @"ADC\s+([\w])");
+            if (match.Success)
+            {
+                Register from = AssemblyUtility.IsRegister(match.Groups[1].Value);
+                if (from != null)
+                {
+                    I8085.A.Value += from.Value;
+                    I8085.A.Value+=Convert.ToByte(I8085.Flag_C.Value);
+                    AssemblyUtility.AddAdjustFlags(I8085.A.Value, from.Value);
+                    result.RegistersChanged.Add(I8085.A);
+
+                }
+                else
+                {
+                    result.SetError("ADC instruction work with Register Only.");
+                    return;
+                }
+                line = line.Replace(match.Groups[0].Value, string.Empty);
+            }
+            else
+            {
+                result.SetError("ADC instruction is incorrectly formatted");
+                return;
+            }
+        }
 
         public static void HLT(ref string line, LineAssembleResult result)
         {
@@ -178,7 +207,7 @@ namespace μp101.Core
             }
             else
             {
-                result.SetError("HLT instruction is incorrectly formatted");
+                result.SetError("CMA instruction is incorrectly formatted");
                 return;
             }
         }
