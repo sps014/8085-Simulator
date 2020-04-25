@@ -172,7 +172,14 @@ namespace μp101.Core
         }
         public static void Reset()
         {
+            Code = null;
+            LabelsCollection = new Dictionary<string, int>();
+            Lines.Clear();
 
+            Parallel.For(0, I8085.MemorySize, (i) =>
+            {
+                I8085.Memory[i].Data = 0;
+            });
         }
 
         public delegate void Processable(ref string line, LineAssembleResult result);
