@@ -31,22 +31,33 @@ namespace μp101.Core
                     return null;
             }
         }
-        public static void AddAdjustFlags(byte value1,byte value2)
+        public static void AddAdjustFlags(byte value1,byte value2,byte c = 0)
         {
             string val1 = Convert.ToString(value1, 2).PadLeft(8, '0'); 
             string val2 = Convert.ToString(value2, 2).PadLeft(8, '0');
 
             string sum = "";
-            byte c = 0;
             for(int i=7;i>=0;i--)
             {
-                byte s = (byt)val1[i];
+                byte a = (byte)(val1[i] == '0' ? 0 : 1);
+                byte b = (byte)(val2[i] == '0' ? 0 : 1);
+                var res=AddBit(a, b, c);
+                c = res.Item2;
+                sum = res.Item1 + sum;
             }
 
+            I8085.Flag_C.Value = bool.Parse(c.ToString());
+
         }
+        /// <summary>
+        /// sum , carry returns
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public static (byte,byte) AddBit(byte a,byte b,byte c=0)
         {
-            byte s=0;
             if (c == 0)
             {
                 if (a == 0 && b == 0) 
