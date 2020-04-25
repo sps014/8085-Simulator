@@ -170,8 +170,8 @@ namespace μp101.Core
                 Register from = AssemblyUtility.IsRegister(match.Groups[1].Value);
                 if (from != null)
                 {
-                    I8085.A.Value += from.Value;
                     AssemblyUtility.AddAdjustFlags(I8085.A.Value, from.Value);
+                    I8085.A.Value += from.Value;
                     result.RegistersChanged.Add(I8085.A);
 
                 }
@@ -209,8 +209,8 @@ namespace μp101.Core
                 }
                 if (value >= 0 && value <= 255)
                 {
+                    AssemblyUtility.AddAdjustFlags(I8085.A.Value, value);
                     I8085.A.Value+= value;
-                    AssemblyUtility.AddAdjustFlags(I8085.A.Value,value);
                     result.RegistersChanged.Add(I8085.A);
                 }
                 else
@@ -236,9 +236,9 @@ namespace μp101.Core
                 Register from = AssemblyUtility.IsRegister(match.Groups[1].Value);
                 if (from != null)
                 {
+                    AssemblyUtility.AddAdjustFlags(I8085.A.Value, from.Value, Convert.ToByte(I8085.Flag_C.Value));
                     I8085.A.Value += from.Value;
                     I8085.A.Value+=Convert.ToByte(I8085.Flag_C.Value);
-                    AssemblyUtility.AddAdjustFlags(I8085.A.Value, from.Value,Convert.ToByte(I8085.Flag_C.Value));
                     result.RegistersChanged.Add(I8085.A);
 
                 }
@@ -276,8 +276,8 @@ namespace μp101.Core
                 }
                 if (value >= 0 && value <= 255)
                 {
-                    I8085.A.Value += value;
                     AssemblyUtility.AddAdjustFlags(I8085.A.Value, value, Convert.ToByte(I8085.Flag_C.Value));
+                    I8085.A.Value += value;
                     result.RegistersChanged.Add(I8085.A);
                 }
                 else
@@ -304,8 +304,8 @@ namespace μp101.Core
                 Register from = AssemblyUtility.IsRegister(match.Groups[1].Value);
                 if (from != null)
                 {
-                    I8085.A.Value -= from.Value;
                     AssemblyUtility.SubAdjustFlags(I8085.A.Value, from.Value);
+                    I8085.A.Value -= from.Value;
                     result.RegistersChanged.Add(I8085.A);
 
                 }
@@ -343,8 +343,8 @@ namespace μp101.Core
                 }
                 if (value >= 0 && value <= 255)
                 {
-                    I8085.A.Value -= value;
                     AssemblyUtility.SubAdjustFlags(I8085.A.Value, value);
+                    I8085.A.Value -= value;
                     result.RegistersChanged.Add(I8085.A);
                 }
                 else
@@ -370,9 +370,9 @@ namespace μp101.Core
                 Register from = AssemblyUtility.IsRegister(match.Groups[1].Value);
                 if (from != null)
                 {
+                    AssemblyUtility.SubAdjustFlags(I8085.A.Value, from.Value, Convert.ToByte(I8085.Flag_C.Value));
                     I8085.A.Value -= from.Value;
                     I8085.A.Value -= (byte)(I8085.Flag_C.Value ? 1 : 0);
-                    AssemblyUtility.SubAdjustFlags(I8085.A.Value, from.Value, Convert.ToByte(I8085.Flag_C.Value));
                     result.RegistersChanged.Add(I8085.A);
 
                 }
@@ -410,9 +410,9 @@ namespace μp101.Core
                 }
                 if (value >= 0 && value <= 255)
                 {
+                    AssemblyUtility.SubAdjustFlags(I8085.A.Value, value, Convert.ToByte(I8085.Flag_C.Value));
                     I8085.A.Value -= value;
                     I8085.A.Value -= (byte)(I8085.Flag_C.Value ? 1 : 0);
-                    AssemblyUtility.SubAdjustFlags(I8085.A.Value, value, Convert.ToByte(I8085.Flag_C.Value));
                     result.RegistersChanged.Add(I8085.A);
                 }
                 else
@@ -461,6 +461,39 @@ namespace μp101.Core
                 return;
             }
         }
+
+
+        public static void JNZ(ref string line, LineAssembleResult result)
+        {
+            //result.FutureLineNumber = result.LineNumber + 1;
+
+            var match = Regex.Match(line, @"JNZ\s+(\w*)");
+            if (match.Success)
+            {
+                string label=match.Groups[1].Value;
+                
+                
+                if (Assembler.LabelsCollection.ContainsKey(label))
+                {
+                    if (I8085.Flag_Z.Value == false)
+                        result.FutureLineNumber = Assembler.LabelsCollection[label];
+                    else
+                        result.FutureLineNumber = result.LineNumber + 1;
+                }
+                else
+                {
+                    result.SetError($"JNZ label: {label} not found");
+                    return;
+                }
+                line = line.Replace(match.Groups[0].Value, string.Empty);
+            }
+            else
+            {
+                result.SetError("JNZ instruction is incorrectly formatted" + line);
+                return;
+            }
+        }
+
 
 
     }
