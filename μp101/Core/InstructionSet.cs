@@ -247,6 +247,44 @@ namespace μp101.Core
                 return;
             }
         }
+        public static void SUI(ref string line, LineAssembleResult result)
+        {
+            result.FutureLineNumber = result.LineNumber + 1;
+
+
+            var match = Regex.Match(line, @"SUI\s+(\d{1,}H?)");
+            if (match.Success)
+            {
+                bool valueHexType = match.Groups[1].Value.ToLower().IndexOf("h") > 0;
+                byte value;
+                if (valueHexType)
+                {
+                    string val = match.Groups[1].Value.ToLower().Replace("h", string.Empty);
+                    value = Convert.ToByte(val, 16);
+                }
+                else
+                {
+                    value = Convert.ToByte(match.Groups[1].Value, 10);
+                }
+                if (value >= 0 && value <= 255)
+                {
+                    I8085.A.Value -= value;
+                    //AssemblyUtility.AddAdjustFlags(I8085.A.Value, value);
+                    result.RegistersChanged.Add(I8085.A);
+                }
+                else
+                {
+                    result.SetError("SUI should utilized 8 bit data only ie from 00-FF or 0-255");
+                    return;
+                }
+                line = line.Replace(match.Groups[0].Value, string.Empty);
+            }
+            else
+            {
+                result.SetError("SUI instruction is incorrectly formatted");
+                return;
+            }
+        }
 
         public static void HLT(ref string line, LineAssembleResult result)
         {
