@@ -180,6 +180,7 @@ namespace μp101.Core
             {
                 I8085.Memory[i].Data = 0;
             });
+
         }
 
         public delegate void Processable(ref string line, LineAssembleResult result);
