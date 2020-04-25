@@ -64,10 +64,14 @@
     protected MemoryTab memoryTab { get; set; }
     protected Snackbar snackbar { get; set; }
 
-    string code { get; set; } = @"MVI B,15H
-S1:ADD B
-ADI 09H
-SUI 14H
+    string code { get; set; } = @"LDA 0000H
+MOV D,A
+LDA 0001H
+MOV B,A
+MVI A,00H
+S1:ADD D
+DCR B
+JNZ S1
 HLT";
 
 

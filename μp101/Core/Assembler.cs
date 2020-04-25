@@ -31,7 +31,8 @@ namespace μp101.Core
                 {"JC" ,InstructionSet.JC  },
                 {"JNP",InstructionSet.JNP },
                 {"JP" ,InstructionSet.JP  },
-                {"INR",InstructionSet.INR }
+                {"INR",InstructionSet.INR },
+                {"DCR",InstructionSet.DCR }
             };
         public static string Code { get; private set; } = null;
         private static List<string> Lines=new List<string>();
