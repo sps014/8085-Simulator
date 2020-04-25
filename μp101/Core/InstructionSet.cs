@@ -171,7 +171,8 @@ namespace μp101.Core
                 if (value >= 0 && value <= 65535)
                 {
                     I8085.Memory[value].Data= I8085.A.Value;
-                    result.MemoriesChanged.Add(I8085.Memory[value]);
+                    result.RegistersChanged.Add(new Register(value.ToString().PadLeft(4,'0')
+                        ,null,I8085.Memory[value].Data));
                 }
                 else
                 {
@@ -734,8 +735,16 @@ namespace μp101.Core
                     {
                         AssemblyUtility.AddAdjustFlags(I8085.M, 1,false);
                         I8085.M += 1;
-                        result.RegistersChanged.Add(new Register(I8085.M.ToString().PadLeft(4, '0'),
-                                                   null, I8085.Memory[I8085.M].Data));
+                        if (I8085.M < I8085.MemorySize && I8085.M > 0)
+                        {
+                            result.RegistersChanged.Add(new Register(I8085.M.ToString().PadLeft(4, '0'),
+                                                       null, I8085.Memory[I8085.M].Data));
+                        }
+                        else
+                        {
+                            result.SetError("INR instruction value out of bound:"+I8085.M);
+                            return;
+                        }
                     }
                     else
                     {
@@ -772,8 +781,17 @@ namespace μp101.Core
                     {
                         AssemblyUtility.AddAdjustFlags(I8085.M, 1, false);
                         I8085.M -= 1;
-                        result.RegistersChanged.Add(new Register(I8085.M.ToString().PadLeft(4, '0'),
+                        if (I8085.M < I8085.MemorySize && I8085.M > 0)
+                        {
+                            result.RegistersChanged.Add(new Register(I8085.M.ToString().PadLeft(4, '0'),
                                                    null, I8085.Memory[I8085.M].Data));
+                        }
+                        else
+                        {
+                            result.SetError("INR instruction value out of bound:" + I8085.M);
+                            return;
+                        }
+                        
                     }
                     else
                     {
