@@ -25,7 +25,8 @@ namespace μp101.Core
                 {"SUI",InstructionSet.SUI },
                 {"SBB",InstructionSet.SBB },
                 {"SBI",InstructionSet.SBI },
-                {"JNZ",InstructionSet.JNZ }
+                {"JNZ",InstructionSet.JNZ },
+                {"INR",InstructionSet.INR }
             };
         public static string Code { get; private set; } = null;
         private static List<string> Lines=new List<string>();

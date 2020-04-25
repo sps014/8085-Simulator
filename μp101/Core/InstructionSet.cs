@@ -494,6 +494,34 @@ namespace μp101.Core
             }
         }
 
+        public static void INR(ref string line, LineAssembleResult result)
+        {
+            result.FutureLineNumber = result.LineNumber + 1;
+
+            var match = Regex.Match(line, @"INR\s+([\w])");
+            if (match.Success)
+            {
+                Register from = AssemblyUtility.IsRegister(match.Groups[1].Value);
+                if (from != null)
+                {
+                    AssemblyUtility.AddAdjustFlags(from.Value,1);
+                    from.Value+=1;
+                    result.RegistersChanged.Add(I8085.A);
+
+                }
+                else
+                {
+                    result.SetError("INR instruction work with  Register Only.");
+                    return;
+                }
+                line = line.Replace(match.Groups[0].Value, string.Empty);
+            }
+            else
+            {
+                result.SetError("INR instruction is incorrectly formatted");
+                return;
+            }
+        }
 
 
     }
