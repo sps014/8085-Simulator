@@ -43,10 +43,13 @@ namespace μp101.Core
                 byte b = (byte)(val2[i] == '0' ? 0 : 1);
                 var res=AddBit(a, b, c);
                 c = res.Item2;
+                if(i==4)
+                {
+                    I8085.Flag_AC.Value = Convert.ToBoolean(res.Item2);
+                }
                 sum = res.Item1 + sum;
             }
-
-            I8085.Flag_C.Value = bool.Parse(c.ToString());
+            I8085.Flag_C.Value = Convert.ToBoolean(c);
 
         }
         /// <summary>
