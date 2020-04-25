@@ -493,6 +493,98 @@ namespace μp101.Core
                 return;
             }
         }
+        public static void JZ(ref string line, LineAssembleResult result)
+        {
+            //result.FutureLineNumber = result.LineNumber + 1;
+
+            var match = Regex.Match(line, @"JZ\s+(\w*)");
+            if (match.Success)
+            {
+                string label = match.Groups[1].Value;
+
+
+                if (Assembler.LabelsCollection.ContainsKey(label))
+                {
+                    if (I8085.Flag_Z.Value)
+                        result.FutureLineNumber = Assembler.LabelsCollection[label];
+                    else
+                        result.FutureLineNumber = result.LineNumber + 1;
+                }
+                else
+                {
+                    result.SetError($"JZ label: {label} not found");
+                    return;
+                }
+                line = line.Replace(match.Groups[0].Value, string.Empty);
+            }
+            else
+            {
+                result.SetError("JZ instruction is incorrectly formatted" + line);
+                return;
+            }
+        }
+
+        public static void JNC(ref string line, LineAssembleResult result)
+        {
+            //result.FutureLineNumber = result.LineNumber + 1;
+
+            var match = Regex.Match(line, @"JNC\s+(\w*)");
+            if (match.Success)
+            {
+                string label = match.Groups[1].Value;
+
+
+                if (Assembler.LabelsCollection.ContainsKey(label))
+                {
+                    if (I8085.Flag_C.Value == false)
+                        result.FutureLineNumber = Assembler.LabelsCollection[label];
+                    else
+                        result.FutureLineNumber = result.LineNumber + 1;
+                }
+                else
+                {
+                    result.SetError($"JNC label: {label} not found");
+                    return;
+                }
+                line = line.Replace(match.Groups[0].Value, string.Empty);
+            }
+            else
+            {
+                result.SetError("JNC instruction is incorrectly formatted" + line);
+                return;
+            }
+        }
+        public static void JC(ref string line, LineAssembleResult result)
+        {
+            //result.FutureLineNumber = result.LineNumber + 1;
+
+            var match = Regex.Match(line, @"JC\s+(\w*)");
+            if (match.Success)
+            {
+                string label = match.Groups[1].Value;
+
+
+                if (Assembler.LabelsCollection.ContainsKey(label))
+                {
+                    if (I8085.Flag_C.Value)
+                        result.FutureLineNumber = Assembler.LabelsCollection[label];
+                    else
+                        result.FutureLineNumber = result.LineNumber + 1;
+                }
+                else
+                {
+                    result.SetError($"JC label: {label} not found");
+                    return;
+                }
+                line = line.Replace(match.Groups[0].Value, string.Empty);
+            }
+            else
+            {
+                result.SetError("JC instruction is incorrectly formatted" + line);
+                return;
+            }
+        }
+
 
         public static void INR(ref string line, LineAssembleResult result)
         {
