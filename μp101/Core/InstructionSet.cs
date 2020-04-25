@@ -166,6 +166,23 @@ namespace μp101.Core
                 return;
             }
         }
+        public static void CMA(ref string line, LineAssembleResult result)
+        {
+            result.FutureLineNumber = result.LineNumber + 1;
+
+            var match = Regex.Match(line, @"CMA");
+            if (match.Success)
+            {
+                I8085.A.Value=AssemblyUtility.Compliment(I8085.A.Value);
+                line = line.Replace(match.Groups[0].Value, string.Empty);
+            }
+            else
+            {
+                result.SetError("HLT instruction is incorrectly formatted");
+                return;
+            }
+        }
+
 
     }
 }
