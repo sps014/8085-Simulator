@@ -154,7 +154,6 @@ namespace μp101.Core
                 if (!LabelsCollection.ContainsKey(gp))
                 {
                     LabelsCollection.Add(gp, number);
-                    Console.WriteLine("Added " + gp);
                 }
             }
         }
