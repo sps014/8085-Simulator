@@ -101,12 +101,12 @@ namespace μp101.Core
             LineAssembleResult result = new LineAssembleResult();
             result.LineNumber = lineNumber;
 
-            string word = FetchMainWord(line,result);
+            string word = FetchMainWord(ref line,result);
 
             if(word==null)
                 return result;
 
-            ProcessWord(word, line, result);
+            ProcessWord(word,line, result);
 
 
             return result;
@@ -124,7 +124,7 @@ namespace μp101.Core
                 }
             }
         }
-        private static string FetchMainWord(string line,LineAssembleResult result)
+        private static string FetchMainWord(ref string line,LineAssembleResult result)
         {
             ExtractLabel(ref line, result.LineNumber);
 
@@ -149,10 +149,12 @@ namespace μp101.Core
             if(match.Success)
             {
                 var gp = match.Groups[1].Value.ToUpper();
-                if(!LabelsCollection.ContainsKey(gp))
+                line = line.Replace(match.Groups[0].Value, string.Empty);
+
+                if (!LabelsCollection.ContainsKey(gp))
                 {
                     LabelsCollection.Add(gp, number);
-                    line = line.Replace(match.Groups[0].Value, string.Empty);
+                    Console.WriteLine("Added " + gp);
                 }
             }
         }
@@ -161,7 +163,7 @@ namespace μp101.Core
             string upperW = word.ToUpper();
             if (MnmonicsExecuter.ContainsKey(upperW))
             {
-                MnmonicsExecuter[word](ref line, assembleResult);
+                MnmonicsExecuter[upperW](ref line, assembleResult);
             }
             else
             {
