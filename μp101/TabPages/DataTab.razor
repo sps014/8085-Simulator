@@ -2,30 +2,25 @@
 @if (Results != null)
 {
     <TableHolder ColumnNames="TableTitle">
-        @foreach (LineAssembleResult res in Results.Distinct())
+        @foreach (Register r in registers.Distinct())
         {
+            <TableItem>
+                <TableValue>@(r.Name)</TableValue>
+                <TableValue>@(r.Value)</TableValue>
+                <TableValue>@(r.Hex)</TableValue>
+                <TableValue>Register</TableValue>
 
-            @foreach (Register r in res.RegistersChanged.Distinct())
-            {
-                <TableItem>
-                    <TableValue>@(r.Name)</TableValue>
-                    <TableValue>@(r.Value)</TableValue>
-                    <TableValue>@(r.Hex)</TableValue>
-                    <TableValue>Register</TableValue>
+            </TableItem>
+        }
+        @foreach (Memory m in memories.Distinct())
+        {
+            <TableItem>
+                <TableValue>@(Array.IndexOf(I8085.Memory, m))</TableValue>
+                <TableValue>@(m.Data)</TableValue>
+                <TableValue>@(m.Hex)</TableValue>
+                <TableValue>Memory</TableValue>
 
-                </TableItem>
-            }
-            @foreach (Memory m in res.MemoriesChanged.Distinct())
-            {
-                <TableItem>
-                    <TableValue>@(Array.IndexOf(I8085.Memory, m))</TableValue>
-                    <TableValue>@(m.Data)</TableValue>
-                    <TableValue>@(m.Hex)</TableValue>
-                    <TableValue>Memory</TableValue>
-
-                </TableItem>
-            }
-
+            </TableItem>
         }
     </TableHolder>
 }
@@ -35,11 +30,33 @@ else
 }
 @code
 {
-    private string[] TableTitle = new string[] {"Location","Value","Value(Hex)","Type"};
+    private List<Register> registers = new List<Register>();
+    private List<Memory> memories = new List<Memory>();
+
+    private string[] TableTitle = new string[] { "Location", "Value", "Value(Hex)", "Type" };
     [Parameter]
     public List<LineAssembleResult> Results { get; set; }
+
+    private void BuildData()
+    {
+        registers.Clear();
+        memories.Clear();
+        foreach (LineAssembleResult res in Results.Distinct())
+        {
+
+            foreach (Register r in res.RegistersChanged.Distinct())
+            {
+                registers.Add(r);
+            }
+            foreach (Memory m in res.MemoriesChanged.Distinct())
+            {
+                memories.Add(m);
+            }
+        }
+    }
     public void Refresh()
     {
+        BuildData();
         StateHasChanged();
     }
 }
