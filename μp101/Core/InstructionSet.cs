@@ -105,13 +105,12 @@ namespace μp101.Core
 
                 if (value >= 0 && value <= 65535)
                 {
-                    Console.WriteLine(value);
                     I8085.A.Value = I8085.Memory[value].Data;
                     result.RegistersChanged.Add(I8085.A);
                 }
                 else
                 {
-                    result.SetError("LDA should utilized 8 bit data only ie from 00-65535");
+                    result.SetError("LDA should utilized 16 bit data only ie from 00-65535");
                     return;
                 }
                 line = line.Replace(match.Groups[0].Value, string.Empty);
@@ -119,6 +118,43 @@ namespace μp101.Core
             else
             {
                 result.SetError("LDA instruction is incorrectly formatted" + line);
+                return;
+            }
+        }
+        public static void STA(ref string line, LineAssembleResult result)
+        {
+            result.FutureLineNumber = result.LineNumber + 1;
+
+            var match = Regex.Match(line, @"STA\s+(\d{1,}H?)");
+            if (match.Success)
+            {
+                bool valueHexType = match.Groups[1].Value.ToLower().IndexOf("h") > 0;
+                int value;
+                if (valueHexType)
+                {
+                    string val = match.Groups[1].Value.ToLower().Replace("h", string.Empty);
+                    value = Convert.ToInt32(val, 16);
+                }
+                else
+                {
+                    value = Convert.ToInt32(match.Groups[1].Value, 10);
+                }
+
+                if (value >= 0 && value <= 65535)
+                {
+                    I8085.Memory[value].Data= I8085.A.Value;
+                    result.MemoriesChanged.Add(I8085.Memory[value]);
+                }
+                else
+                {
+                    result.SetError("STA should utilized 16 bit data only ie from 00-65535");
+                    return;
+                }
+                line = line.Replace(match.Groups[0].Value, string.Empty);
+            }
+            else
+            {
+                result.SetError("STA instruction is incorrectly formatted" + line);
                 return;
             }
         }

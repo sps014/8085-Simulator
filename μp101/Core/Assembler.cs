@@ -14,6 +14,7 @@ namespace μp101.Core
                 {"MOV",InstructionSet.MOV },
                 {"MVI",InstructionSet.MVI },
                 {"LDA",InstructionSet.LDA },
+                {"STA",InstructionSet.STA },
                 {"ADD",InstructionSet.ADD },
                 {"ADI",InstructionSet.ADI },
                 {"HLT",InstructionSet.HLT },
