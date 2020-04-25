@@ -51,10 +51,13 @@
             StateHasChanged();
         };
     }
-    public void Show(string msg=null)
+    public void Show(string msg=null,string bc=null)
     {
         if (msg != null)
             Message = msg;
+        if (bc != null)
+            BackgroundColor = bc;
+
         Visible = true;
         timer.Interval = Interval;
         timer.Enabled = true;
