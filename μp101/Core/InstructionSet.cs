@@ -22,6 +22,7 @@ namespace μp101.Core
                 {
                     to.Value = from.Value;
                     result.RegistersChanged.Add(to);
+
                 }
                 else
                 {
@@ -523,7 +524,6 @@ namespace μp101.Core
                 return;
             }
         }
-
         public static void JNC(ref string line, LineAssembleResult result)
         {
             //result.FutureLineNumber = result.LineNumber + 1;
@@ -581,6 +581,66 @@ namespace μp101.Core
             else
             {
                 result.SetError("JC instruction is incorrectly formatted" + line);
+                return;
+            }
+        }
+        public static void JNP(ref string line, LineAssembleResult result)
+        {
+            //result.FutureLineNumber = result.LineNumber + 1;
+
+            var match = Regex.Match(line, @"JNP\s+(\w*)");
+            if (match.Success)
+            {
+                string label = match.Groups[1].Value;
+
+
+                if (Assembler.LabelsCollection.ContainsKey(label))
+                {
+                    if (I8085.Flag_S.Value == false)
+                        result.FutureLineNumber = Assembler.LabelsCollection[label];
+                    else
+                        result.FutureLineNumber = result.LineNumber + 1;
+                }
+                else
+                {
+                    result.SetError($"JNP label: {label} not found");
+                    return;
+                }
+                line = line.Replace(match.Groups[0].Value, string.Empty);
+            }
+            else
+            {
+                result.SetError("JNP instruction is incorrectly formatted" + line);
+                return;
+            }
+        }
+        public static void JP(ref string line, LineAssembleResult result)
+        {
+            //result.FutureLineNumber = result.LineNumber + 1;
+
+            var match = Regex.Match(line, @"JP\s+(\w*)");
+            if (match.Success)
+            {
+                string label = match.Groups[1].Value;
+
+
+                if (Assembler.LabelsCollection.ContainsKey(label))
+                {
+                    if (I8085.Flag_S.Value)
+                        result.FutureLineNumber = Assembler.LabelsCollection[label];
+                    else
+                        result.FutureLineNumber = result.LineNumber + 1;
+                }
+                else
+                {
+                    result.SetError($"JP label: {label} not found");
+                    return;
+                }
+                line = line.Replace(match.Groups[0].Value, string.Empty);
+            }
+            else
+            {
+                result.SetError("JP instruction is incorrectly formatted" + line);
                 return;
             }
         }

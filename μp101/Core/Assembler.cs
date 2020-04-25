@@ -29,6 +29,8 @@ namespace μp101.Core
                 {"JZ" ,InstructionSet.JZ  },
                 {"JNC",InstructionSet.JNC },
                 {"JC" ,InstructionSet.JC  },
+                {"JNP",InstructionSet.JNP },
+                {"JP" ,InstructionSet.JP  },
                 {"INR",InstructionSet.INR }
             };
         public static string Code { get; private set; } = null;
