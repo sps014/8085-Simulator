@@ -18,7 +18,8 @@ namespace μp101.Core
                 {"HLT",InstructionSet.HLT },
                 {"CMA",InstructionSet.CMA },
                 {"ACI",InstructionSet.ACI },
-                {"ADC",InstructionSet.ADC }
+                {"ADC",InstructionSet.ADC },
+                {"SUB",InstructionSet.SUB }
             };
         public static string Code { get; private set; } = null;
         private static List<string> Lines=new List<string>();
