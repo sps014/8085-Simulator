@@ -95,6 +95,7 @@ namespace μp101.Core
                 if (from != null)
                 {
                     I8085.A.Value += from.Value;
+                    AssemblyUtility.AddAdjustFlags(I8085.A.Value, from.Value);
                     result.RegistersChanged.Add(I8085.A);
 
                 }
@@ -133,6 +134,7 @@ namespace μp101.Core
                 if (value >= 0 && value <= 255)
                 {
                     I8085.A.Value+= value;
+                    AssemblyUtility.AddAdjustFlags(I8085.A.Value,value);
                     result.RegistersChanged.Add(I8085.A);
                 }
                 else
