@@ -81,8 +81,17 @@ namespace μp101.Core
 
                     if(value>=0&&value<=255)
                     {
-                        to.Value = value;
-                        result.RegistersChanged.Add(to);
+                        if (match.Groups[1].Value == "M")
+                        {
+                            I8085.Memory[I8085.M].Data = value;
+                            result.RegistersChanged.Add(new Register(I8085.M.ToString().PadLeft(4, '0'),
+                            null, I8085.Memory[I8085.M].Data));
+                        }
+                        else
+                        {
+                            to.Value = value;
+                            result.RegistersChanged.Add(to);
+                        }
                     }
                     else
                     {
