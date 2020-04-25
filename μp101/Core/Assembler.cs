@@ -108,7 +108,21 @@ namespace μp101.Core
 
             ProcessWord(word, line, result);
 
+
             return result;
+        }
+        private static void ExtraCharacterChecks( string s,LineAssembleResult res)
+        {
+            if (res == null)
+                return;
+
+            if(res.Result==AssembleOutcome.Success)
+            {
+                if(!string.IsNullOrWhiteSpace(s))
+                {
+                    res.SetError("Unknown characters:" + s);
+                }
+            }
         }
         private static string FetchMainWord(string line,LineAssembleResult result)
         {
@@ -144,14 +158,16 @@ namespace μp101.Core
         }
         private static void ProcessWord(string word,string line,LineAssembleResult assembleResult)
         {
-            if(MnmonicsExecuter.ContainsKey(word.ToUpper()))
+            string upperW = word.ToUpper();
+            if (MnmonicsExecuter.ContainsKey(upperW))
             {
-                MnmonicsExecuter[word](line.ToUpper(), assembleResult);
+                MnmonicsExecuter[word](ref upperW, assembleResult);
             }
             else
             {
                 assembleResult.SetError("Unidentified instruction :" + word);
             }
+            ExtraCharacterChecks(upperW, assembleResult);
         }
 
         public delegate void Processable(ref string line, LineAssembleResult result);
