@@ -8,7 +8,7 @@ namespace μp101.Core
 {
     public static class InstructionSet
     {
-        public static void MOV(string line,LineAssembleResult result)
+        public static void MOV(ref string line,LineAssembleResult result)
         {
             result.FutureLineNumber = result.LineNumber + 1;
 
@@ -36,7 +36,7 @@ namespace μp101.Core
                 return;
             }
         }
-        public static void MVI(string line,LineAssembleResult result)
+        public static void MVI(ref string line,LineAssembleResult result)
         {
             result.FutureLineNumber = result.LineNumber + 1;
 
@@ -81,7 +81,7 @@ namespace μp101.Core
                 return;
             }
         }
-        public static void ADD(string line, LineAssembleResult result)
+        public static void ADD(ref string line, LineAssembleResult result)
         {
             result.FutureLineNumber = result.LineNumber + 1;
 
@@ -107,7 +107,7 @@ namespace μp101.Core
                 return;
             }
         }
-        public static void ADI(string line, LineAssembleResult result)
+        public static void ADI(ref string line, LineAssembleResult result)
         {
             result.FutureLineNumber = result.LineNumber + 1;
 
@@ -144,7 +144,7 @@ namespace μp101.Core
             }
         }
 
-        public static void HLT(string line, LineAssembleResult result)
+        public static void HLT(ref string line, LineAssembleResult result)
         {
 
             var match = Regex.Match(line, @"HLT");
