@@ -80,7 +80,7 @@ namespace μp101.Core
             }
             else
             {
-                result.SetError("MVI instruction is incorrectly formatted");
+                result.SetError("MVI instruction is incorrectly formatted"+line);
                 return;
             }
         }

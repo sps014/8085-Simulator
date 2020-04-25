@@ -161,13 +161,13 @@ namespace μp101.Core
             string upperW = word.ToUpper();
             if (MnmonicsExecuter.ContainsKey(upperW))
             {
-                MnmonicsExecuter[word](ref upperW, assembleResult);
+                MnmonicsExecuter[word](ref line, assembleResult);
             }
             else
             {
                 assembleResult.SetError("Unidentified instruction :" + word);
             }
-            ExtraCharacterChecks(upperW, assembleResult);
+            ExtraCharacterChecks(line, assembleResult);
         }
 
         public delegate void Processable(ref string line, LineAssembleResult result);
