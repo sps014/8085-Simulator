@@ -162,7 +162,7 @@ namespace μp101.Core
                 {
                     I8085.A.Value += from.Value;
                     I8085.A.Value+=Convert.ToByte(I8085.Flag_C.Value);
-                    AssemblyUtility.AddAdjustFlags(I8085.A.Value, from.Value);
+                    AssemblyUtility.AddAdjustFlags(I8085.A.Value, from.Value,Convert.ToByte(I8085.Flag_C.Value));
                     result.RegistersChanged.Add(I8085.A);
 
                 }
@@ -176,6 +176,44 @@ namespace μp101.Core
             else
             {
                 result.SetError("ADC instruction is incorrectly formatted");
+                return;
+            }
+        }
+        public static void ACI(ref string line, LineAssembleResult result)
+        {
+            result.FutureLineNumber = result.LineNumber + 1;
+
+
+            var match = Regex.Match(line, @"ACI\s+(\d{1,}H?)");
+            if (match.Success)
+            {
+                bool valueHexType = match.Groups[1].Value.ToLower().IndexOf("h") > 0;
+                byte value;
+                if (valueHexType)
+                {
+                    string val = match.Groups[1].Value.ToLower().Replace("h", string.Empty);
+                    value = Convert.ToByte(val, 16);
+                }
+                else
+                {
+                    value = Convert.ToByte(match.Groups[1].Value, 10);
+                }
+                if (value >= 0 && value <= 255)
+                {
+                    I8085.A.Value += value;
+                    AssemblyUtility.AddAdjustFlags(I8085.A.Value, value, Convert.ToByte(I8085.Flag_C.Value));
+                    result.RegistersChanged.Add(I8085.A);
+                }
+                else
+                {
+                    result.SetError("ACI should utilized 8 bit data only ie from 00-FF or 0-255");
+                    return;
+                }
+                line = line.Replace(match.Groups[0].Value, string.Empty);
+            }
+            else
+            {
+                result.SetError("ACI instruction is incorrectly formatted");
                 return;
             }
         }
