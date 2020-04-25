@@ -75,8 +75,6 @@ HLT";
     {
         result.Clear();
         Assembler.LoadToAssembly(await cell.GetText());
-        snackbar.BackgroundColor = "green";
-        snackbar.Show("Loaded instructions in the Assembly");
 
     }
     void RunLine()
@@ -97,6 +95,7 @@ HLT";
                 result.Clear();
                 return;
             }
+
             result.Add(res);
         }
         Refresh();
@@ -120,6 +119,11 @@ HLT";
                     snackbar.Show("Line:" + res.LineNumber + "\r\n" + res.ErrorMessage);
                     result.Clear();
                     break;
+                }
+                if (res.IsHalt)
+                {
+                    snackbar.BackgroundColor = "green";
+                    snackbar.Show("Completely executed..");
                 }
                 result.Add(res);
             }
