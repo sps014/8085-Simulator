@@ -97,6 +97,11 @@ HLT";
                 result.Clear();
                 return;
             }
+            if (res.IsHalt)
+            {
+                snackbar.BackgroundColor = "green";
+                snackbar.Show("Completely executed successfully..");
+            }
 
             result.Add(res);
         }
@@ -125,7 +130,8 @@ HLT";
                 if (res.IsHalt)
                 {
                     snackbar.BackgroundColor = "green";
-                    snackbar.Show("Completely executed..");
+                    snackbar.Show("Completely executed successfully..");
+                    break;
                 }
                 result.Add(res);
             }
