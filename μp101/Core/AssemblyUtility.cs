@@ -61,9 +61,6 @@ namespace μp101.Core
             int res = value1 - value2 - c;
             var sum = Convert.ToString(res, 2).PadLeft(8,'0');
 
-            Console.WriteLine(value1+"-"+value2+"-"+c);
-            Console.WriteLine(sum);
-
             I8085.Flag_Z.Value = (sum == "00000000") ? true : false;
 
             I8085.Flag_C.Value = Convert.ToBoolean(c);
