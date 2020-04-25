@@ -25,8 +25,8 @@ namespace μp101.Core
                     return I8085.H;
                 case "L":
                     return I8085.L;
-                //case "M":
-                //    return I8085.L;
+                case "M":
+                    return I8085.L;
                 default:
                     return null;
             }

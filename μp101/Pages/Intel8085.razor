@@ -80,6 +80,7 @@ HLT";
         result.Clear();
         Assembler.LoadToAssembly(await cell.GetText());
         snackbar.Show("Loaded instructions..","green");
+        Refresh();
 
     }
     void RunLine()

@@ -18,6 +18,22 @@ namespace μp101.Core
         public static Register E { get; } = new Register("E", D);
         public static Register H { get; } = new Register("H");
         public static Register L { get; } = new Register("L", H);
+        public static int M 
+        { 
+            get
+            {
+                return Convert.ToInt32(H.Value.ToString().PadLeft(2,'0') + L.Value.ToString().PadLeft(2,'0'),16);
+            }
+            set
+            {
+                if (value < 0 || value >= MemorySize)
+                    return;
+
+                var val=value.ToString("X").PadLeft(4, '0');
+                H.Value = (byte)Convert.ToInt32(val.Substring(0, 2),16);
+                L.Value = (byte)Convert.ToInt32(val.Substring(2, 2), 16);
+            }
+        }
         public static Register PC_Upper { get; } = new Register("PC");
         public static Register PC { get; } = new Register("PC", PC_Upper);
         public static Register SP_Upper { get; } = new Register("SP");
