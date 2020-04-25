@@ -65,12 +65,13 @@
     protected Snackbar snackbar { get; set; }
 
     string code { get; set; } = @"LDA 0000H
-MOV D,A
-LDA 0001H
-MOV B,A
+MOV C,A
+MVI H,00H
+MVI L,01H
 MVI A,00H
-S1:ADD D
-DCR B
+S1:ADD M
+INR M
+DCR C
 JNZ S1
 HLT";
 

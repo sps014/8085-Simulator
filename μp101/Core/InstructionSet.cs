@@ -198,9 +198,18 @@ namespace μp101.Core
                 Register from = AssemblyUtility.IsRegister(match.Groups[1].Value);
                 if (from != null)
                 {
-                    AssemblyUtility.AddAdjustFlags(I8085.A.Value, from.Value);
-                    I8085.A.Value += from.Value;
-                    result.RegistersChanged.Add(I8085.A);
+                    if (match.Groups[1].Value == "M")
+                    {
+                        AssemblyUtility.AddAdjustFlags(I8085.A.Value, I8085.Memory[I8085.M].Data);
+                        I8085.A.Value+=I8085.Memory[I8085.M].Data;
+                        result.RegistersChanged.Add(I8085.A);
+                    }
+                    else
+                    {
+                        AssemblyUtility.AddAdjustFlags(I8085.A.Value, from.Value);
+                        I8085.A.Value += from.Value;
+                        result.RegistersChanged.Add(I8085.A);
+                    }
 
                 }
                 else
@@ -264,10 +273,24 @@ namespace μp101.Core
                 Register from = AssemblyUtility.IsRegister(match.Groups[1].Value);
                 if (from != null)
                 {
-                    AssemblyUtility.AddAdjustFlags(I8085.A.Value, from.Value, Convert.ToByte(I8085.Flag_C.Value));
-                    I8085.A.Value += from.Value;
-                    I8085.A.Value+=Convert.ToByte(I8085.Flag_C.Value);
-                    result.RegistersChanged.Add(I8085.A);
+                    if (match.Groups[1].Value == "M")
+                    {
+                        AssemblyUtility.AddAdjustFlags(I8085.A.Value, I8085.Memory[I8085.M].Data,
+                            Convert.ToByte(I8085.Flag_C.Value));
+
+                        I8085.A.Value += I8085.Memory[I8085.M].Data;
+                        I8085.A.Value += Convert.ToByte(I8085.Flag_C.Value);
+
+                        result.RegistersChanged.Add(I8085.A);
+                    }
+                    else
+                    {
+                        AssemblyUtility.AddAdjustFlags(I8085.A.Value, from.Value, Convert.ToByte(I8085.Flag_C.Value));
+                        I8085.A.Value += from.Value;
+                        I8085.A.Value += Convert.ToByte(I8085.Flag_C.Value);
+                        result.RegistersChanged.Add(I8085.A);
+                    }
+
 
                 }
                 else
@@ -332,9 +355,20 @@ namespace μp101.Core
                 Register from = AssemblyUtility.IsRegister(match.Groups[1].Value);
                 if (from != null)
                 {
-                    AssemblyUtility.SubAdjustFlags(I8085.A.Value, from.Value);
-                    I8085.A.Value -= from.Value;
-                    result.RegistersChanged.Add(I8085.A);
+                    if (match.Groups[1].Value == "M")
+                    {
+                        AssemblyUtility.SubAdjustFlags(I8085.A.Value, I8085.Memory[I8085.M].Data);
+
+                        I8085.A.Value -= I8085.Memory[I8085.M].Data;
+
+                        result.RegistersChanged.Add(I8085.A);
+                    }
+                    else
+                    {
+                        AssemblyUtility.SubAdjustFlags(I8085.A.Value, from.Value);
+                        I8085.A.Value -= from.Value;
+                        result.RegistersChanged.Add(I8085.A);
+                    }
 
                 }
                 else
@@ -398,10 +432,23 @@ namespace μp101.Core
                 Register from = AssemblyUtility.IsRegister(match.Groups[1].Value);
                 if (from != null)
                 {
-                    AssemblyUtility.SubAdjustFlags(I8085.A.Value, from.Value, Convert.ToByte(I8085.Flag_C.Value));
-                    I8085.A.Value -= from.Value;
-                    I8085.A.Value -= (byte)(I8085.Flag_C.Value ? 1 : 0);
-                    result.RegistersChanged.Add(I8085.A);
+                    if (match.Groups[1].Value == "M")
+                    {
+                        AssemblyUtility.SubAdjustFlags(I8085.A.Value, I8085.Memory[I8085.M].Data,
+                            Convert.ToByte(I8085.Flag_C.Value));
+
+                        I8085.A.Value -= I8085.Memory[I8085.M].Data;
+                        I8085.A.Value -= Convert.ToByte(I8085.Flag_C.Value);
+
+                        result.RegistersChanged.Add(I8085.A);
+                    }
+                    else
+                    {
+                        AssemblyUtility.SubAdjustFlags(I8085.A.Value, from.Value, Convert.ToByte(I8085.Flag_C.Value));
+                        I8085.A.Value -= from.Value;
+                        I8085.A.Value -= (byte)(I8085.Flag_C.Value ? 1 : 0);
+                        result.RegistersChanged.Add(I8085.A);
+                    }
 
                 }
                 else
