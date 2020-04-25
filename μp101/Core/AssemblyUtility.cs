@@ -94,15 +94,7 @@ namespace μp101.Core
         }
         public static byte Compliment(byte b)
         {
-            string val1 = Convert.ToString(b, 2).PadLeft(8, '0');
-            string s = "";
-            for (int i = 7; i>=0; i--)
-            {
-                byte v= (byte)(val1[i] == '0' ? 1 : 0);
-                s = v + s;
-            }
-
-            return Convert.ToByte(s);
+            return (byte)(255 - b);
         }
     }
 }
