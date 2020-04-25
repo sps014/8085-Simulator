@@ -56,6 +56,20 @@ namespace μp101.Core
 
             I8085.Flag_P.Value=(Count1s((byte)(value1+value2+c))%2==0)?true:false;
         }
+        public static void SubAdjustFlags(byte value1, byte value2, byte c = 0)
+        {
+            int res = value1 - value2 - c;
+            var sum = Convert.ToString(res, 10);
+
+           
+
+            I8085.Flag_Z.Value = (sum == "00000000") ? true : false;
+
+            I8085.Flag_C.Value = Convert.ToBoolean(c);
+
+            I8085.Flag_P.Value = (Count1s((byte)(value1 - value2 - c)) % 2 == 0) ? true : false;
+        }
+
         /// <summary>
         /// sum , carry returns
         /// </summary>
