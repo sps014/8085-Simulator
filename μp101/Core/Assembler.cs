@@ -181,6 +181,27 @@ namespace μp101.Core
                 I8085.Memory[i].Data = 0;
             });
 
+            I8085.A.Value = 0;
+            I8085.B.Value = 0;
+            I8085.C.Value = 0;
+            I8085.D.Value = 0;
+            I8085.E.Value = 0;
+            I8085.L.Value = 0;
+            I8085.H.Value = 0;
+            I8085.PC.Value = 0;
+            I8085.PC_Upper.Value = 0;
+            I8085.SP.Value = 0;
+            I8085.SP_Upper.Value = 0;
+            I8085.PSW.Value = 0;
+            I8085.PSW_Upper.Value = 0;
+
+            I8085.Flag_AC.Value = false;
+            I8085.Flag_Z.Value = false;
+            I8085.Flag_C.Value = false;
+            I8085.Flag_P.Value = false;
+            I8085.Flag_S.Value = false;
+
+
         }
 
         public delegate void Processable(ref string line, LineAssembleResult result);
