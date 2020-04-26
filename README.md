@@ -9,3 +9,7 @@
   
  Assembler:- Written in C# [Still Work in Progress]
  
+ ###### Current supported instructions are:
+ ```asm 
+ MOV ,MVI ,ADD ,ADI ,HLT ,CMA ,SUB ,SUI ,ADC ,ACI ,SBB ,SBI ,LDA ,STA ,JNZ ,INR ,JNC ,JC ,JZ ,DCR ,JP ,JNP ,CMP ,CPI
+ ```
