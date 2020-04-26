@@ -875,6 +875,58 @@ namespace μp101.Core
                 return;
             }
         }
+        public static void CPI(ref string line, LineAssembleResult result)
+        {
+            result.FutureLineNumber = result.LineNumber + 1;
+
+
+            var match = Regex.Match(line, @"CPI\s+(\d{1,}H?)");
+            if (match.Success)
+            {
+                bool valueHexType = match.Groups[1].Value.ToLower().IndexOf("h") > 0;
+                byte value;
+                if (valueHexType)
+                {
+                    string val = match.Groups[1].Value.ToLower().Replace("h", string.Empty);
+                    value = Convert.ToByte(val, 16);
+                }
+                else
+                {
+                    value = Convert.ToByte(match.Groups[1].Value, 10);
+                }
+                if (value >= 0 && value <= 255)
+                {
+                    if (I8085.A.Value < value)
+                    {
+                        I8085.Flag_C.Value = true;
+                        I8085.Flag_Z.Value = false;
+
+                    }
+                    else if (I8085.A.Value == value)
+                    {
+                        I8085.Flag_C.Value = false;
+                        I8085.Flag_Z.Value = true;
+                    }
+                    else
+                    {
+                        I8085.Flag_C.Value = false;
+                        I8085.Flag_Z.Value = false;
+                    }
+                }
+                else
+                {
+                    result.SetError("CPI should utilized 8 bit data only ie from 00-FF or 0-255");
+                    return;
+                }
+                line = line.Replace(match.Groups[0].Value, string.Empty);
+            }
+            else
+            {
+                result.SetError("CPI instruction is incorrectly formatted");
+                return;
+            }
+        }
+
 
 
     }

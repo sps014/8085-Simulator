@@ -33,7 +33,8 @@ namespace μp101.Core
                 {"JP" ,InstructionSet.JP  },
                 {"INR",InstructionSet.INR },
                 {"DCR",InstructionSet.DCR },
-                {"CMP",InstructionSet.CMP }
+                {"CMP",InstructionSet.CMP },
+                {"CPI",InstructionSet.CPI }
 
             };
         public static string Code { get; private set; } = null;
