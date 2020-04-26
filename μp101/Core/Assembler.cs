@@ -45,13 +45,22 @@ namespace μp101.Core
         
         private static LineAssembleResult CurrentResult = null;
 
-        public static void LoadToAssembly(string code)
+        public static bool LoadToAssembly(string code)
         {
+            if(code!=null)
+            {
+                if(code.ToUpper().IndexOf("HLT")<0)
+                {
+                    return false;
+                }
+            }
+
             Code = code;
             Lines.Clear();
             Lines.AddRange(code.Split(new char[] { '\n' }));
             CurrentResult = null;
             LabelsCollection = new Dictionary<string, int>();
+            return true;
         }
         public static List<LineAssembleResult> ExecuteRemaining()
         {

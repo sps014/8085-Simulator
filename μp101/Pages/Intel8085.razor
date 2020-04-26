@@ -79,8 +79,12 @@ HLT";
     async void LoadAssembly()
     {
         result.Clear();
-        Assembler.LoadToAssembly(await cell.GetText());
-        snackbar.Show("Loaded instructions..","green");
+        bool res=Assembler.LoadToAssembly(await cell.GetText());
+        if(res)
+            snackbar.Show("Loaded instructions..","green");
+        else
+            snackbar.Show("No termination, HLT instruction missing in code..", "red");
+
         Refresh();
 
     }
