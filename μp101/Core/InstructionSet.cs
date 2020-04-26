@@ -828,8 +828,6 @@ namespace μp101.Core
                     byte value1;
                     if (match.Groups[1].Value == "M")
                     {
-                        AssemblyUtility.AddAdjustFlags(I8085.M, 1, false);
-                        I8085.M -= 1;
                         if (I8085.M < I8085.MemorySize && I8085.M >= 0)
                         {
                             value1 = I8085.Memory[I8085.M].Data;
