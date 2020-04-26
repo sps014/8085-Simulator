@@ -815,6 +815,68 @@ namespace μp101.Core
             }
         }
 
+        public static void CMP(ref string line, LineAssembleResult result)
+        {
+            result.FutureLineNumber = result.LineNumber + 1;
+
+            var match = Regex.Match(line, @"CMP\s+([\w])");
+            if (match.Success)
+            {
+                Register from = AssemblyUtility.IsRegister(match.Groups[1].Value);
+                if (from != null)
+                {
+                    byte value1;
+                    if (match.Groups[1].Value == "M")
+                    {
+                        AssemblyUtility.AddAdjustFlags(I8085.M, 1, false);
+                        I8085.M -= 1;
+                        if (I8085.M < I8085.MemorySize && I8085.M > 0)
+                        {
+                            value1 = I8085.Memory[I8085.M].Data;
+                        }
+                        else
+                        {
+                            result.SetError("CMP instruction value out of bound:" + I8085.M);
+                            return;
+                        }
+
+                    }
+                    else
+                    {
+                        value1 = from.Value;
+                    }
+
+                    if(I8085.A.Value<value1)
+                    {
+                        I8085.Flag_C.Value = true;
+                        I8085.Flag_Z.Value = false;
+
+                    }
+                    else if(I8085.A.Value==value1)
+                    {
+                        I8085.Flag_C.Value = false;
+                        I8085.Flag_Z.Value = true;
+                    }
+                    else
+                    {
+                        I8085.Flag_C.Value = false;
+                        I8085.Flag_Z.Value = false;
+                    }
+
+                }
+                else
+                {
+                    result.SetError("DCR instruction work with  Register Only.");
+                    return;
+                }
+                line = line.Replace(match.Groups[0].Value, string.Empty);
+            }
+            else
+            {
+                result.SetError("DCR instruction is incorrectly formatted");
+                return;
+            }
+        }
 
 
     }

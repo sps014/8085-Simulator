@@ -76,7 +76,7 @@ namespace μp101.Core
                 sum = res.Item1 + sum;
             }
 
-            I8085.Flag_Z.Value = (sum == "00000000") ? true : false;
+            I8085.Flag_Z.Value = (sum == "0000000000000000") ? true : false;
 
 
             I8085.Flag_S.Value = (value1 + value2 ) >= 0 ? true : false;
