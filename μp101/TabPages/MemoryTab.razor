@@ -31,7 +31,7 @@
             <TableValue OnClick="()=> { Console.WriteLine(local_i+GetMemoryIndex()); }">@mem.Hex</TableValue>
             <TableValue>
                 <form onsubmit="return false;">
-                    <input type="number" min="0" max="255" class="form-control frozen-dreams-gradient" @bind-value="I8085.Memory[local_i+currentStart].Data"/>
+                    <input type="number" min="0" max="255"  style="min-width:70px" class="form-control frozen-dreams-gradient" @bind-value="I8085.Memory[local_i+currentStart].Data"/>
                 </form>
                
             </TableValue>
@@ -44,7 +44,7 @@
 
 @code
 {
-    private string[] DataTable = new string[] { "Location", "Value", "Value(Hex)", "Edit (0-255)" };
+    private string[] DataTable = new string[] { "Address", "Value", "Val-Hex", "Edit (0-255)" };
 
     private int memoryDisplayCount = 5;
     public int MemoryDisplayCount
