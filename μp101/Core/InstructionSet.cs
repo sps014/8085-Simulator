@@ -735,7 +735,7 @@ namespace μp101.Core
                     {
                         AssemblyUtility.AddAdjustFlags(I8085.M, 1,false);
                         I8085.M += 1;
-                        if (I8085.M < I8085.MemorySize && I8085.M > 0)
+                        if (I8085.M < I8085.MemorySize && I8085.M >= 0)
                         {
                             result.RegistersChanged.Add(new Register(I8085.M.ToString().PadLeft(4, '0'),
                                                        null, I8085.Memory[I8085.M].Data));
@@ -781,7 +781,7 @@ namespace μp101.Core
                     {
                         AssemblyUtility.AddAdjustFlags(I8085.M, 1, false);
                         I8085.M -= 1;
-                        if (I8085.M < I8085.MemorySize && I8085.M > 0)
+                        if (I8085.M < I8085.MemorySize && I8085.M >= 0)
                         {
                             result.RegistersChanged.Add(new Register(I8085.M.ToString().PadLeft(4, '0'),
                                                    null, I8085.Memory[I8085.M].Data));
@@ -830,7 +830,7 @@ namespace μp101.Core
                     {
                         AssemblyUtility.AddAdjustFlags(I8085.M, 1, false);
                         I8085.M -= 1;
-                        if (I8085.M < I8085.MemorySize && I8085.M > 0)
+                        if (I8085.M < I8085.MemorySize && I8085.M >= 0)
                         {
                             value1 = I8085.Memory[I8085.M].Data;
                         }
@@ -866,14 +866,14 @@ namespace μp101.Core
                 }
                 else
                 {
-                    result.SetError("DCR instruction work with  Register Only.");
+                    result.SetError("CMP instruction work with  Register Only.");
                     return;
                 }
                 line = line.Replace(match.Groups[0].Value, string.Empty);
             }
             else
             {
-                result.SetError("DCR instruction is incorrectly formatted");
+                result.SetError("CMP instruction is incorrectly formatted");
                 return;
             }
         }
