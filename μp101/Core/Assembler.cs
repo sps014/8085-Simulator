@@ -34,7 +34,9 @@ namespace Sim8085.Core
                 {"INR",InstructionSet.INR },
                 {"DCR",InstructionSet.DCR },
                 {"CMP",InstructionSet.CMP },
-                {"CPI",InstructionSet.CPI }
+                {"CPI",InstructionSet.CPI },
+                {"CALL",InstructionSet.CALL },
+                {"RET",InstructionSet.RET }
 
             };
         public static string Code { get; private set; } = null;
@@ -63,7 +65,16 @@ namespace Sim8085.Core
             Lines.AddRange(code.Split(new char[] { '\n' }));
             CurrentResult = null;
             LabelsCollection = new Dictionary<string, int>();
+            ExtractAllLabels();
             return true;
+        }
+        private static void ExtractAllLabels()
+        {
+            for(int i=0;i<Lines.Count;i++)
+            {
+                string l = Lines[i];
+                ExtractLabel(ref l, i);
+            }
         }
         public static List<LineAssembleResult> ExecuteRemaining()
         {
