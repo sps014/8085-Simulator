@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
+    <RootNamespace>Sim8085</RootNamespace>
+    <AssemblyName>Sim8085</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

@@ -5,9 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using μp101.Core;
 
-namespace μp101.Component
+namespace Sim8085.Component
 {
     public partial class CodeCell
     {

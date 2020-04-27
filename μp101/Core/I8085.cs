@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace μp101.Core
+namespace Sim8085.Core
 {
     public static class I8085
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Resources;
 using System.Threading.Tasks;
 
-namespace μp101.Core
+namespace Sim8085.Core
 {
     public class LineAssembleResult
     {

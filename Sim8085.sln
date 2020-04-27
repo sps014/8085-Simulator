@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29924.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "μp101", "μp101\μp101.csproj", "{644AD336-EC6E-4C9E-8E11-4C439E605F69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimIntel8085", "μp101\SimIntel8085.csproj", "{644AD336-EC6E-4C9E-8E11-4C439E605F69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
