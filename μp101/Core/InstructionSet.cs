@@ -939,7 +939,8 @@ namespace μp101.Core
 
                 if (Assembler.LabelsCollection.ContainsKey(label))
                 {
-                        result.FutureLineNumber = Assembler.LabelsCollection[label];
+                   result.FutureLineNumber = Assembler.LabelsCollection[label];
+                   Assembler.CallStack.Add(result.LineNumber);
                 }
                 else
                 {
