@@ -11,5 +11,6 @@
  
  ###### Current supported instructions are:
  ```asm 
- MOV ,MVI ,ADD ,ADI ,HLT ,CMA ,SUB ,SUI ,ADC ,ACI ,SBB ,SBI ,LDA ,STA ,JNZ ,INR ,JNC ,JC ,JZ ,DCR ,JP ,JNP ,CMP ,CPI
+ MOV ,MVI ,ADD ,ADI ,HLT ,CMA ,SUB ,SUI ,ADC ,ACI ,SBB ,SBI ,LDA ,
+ STA ,JNZ, INR ,JNC ,JC ,JZ ,DCR ,JP ,JNP ,CMP ,CPI, CALL ,RET
  ```
