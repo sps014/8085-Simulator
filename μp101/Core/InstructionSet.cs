@@ -955,6 +955,30 @@ namespace μp101.Core
                 return;
             }
         }
+        public static void RET(ref string line, LineAssembleResult result)
+        {
+            result.FutureLineNumber = result.LineNumber + 1;
+
+            var match = Regex.Match(line, @"RET");
+            if (match.Success)
+            {
+                if(Assembler.CallStack.Count>0)
+                {
+                    result.FutureLineNumber = Assembler.CallStack.Last();
+                    Assembler.CallStack.RemoveAt(Assembler.CallStack.Count - 1);
+                }
+                else
+                {
+                    result.SetError("RET can't be executed since no value in callstack");
+                    return;
+                }
+            }
+            else
+            {
+                result.SetError("RET instruction is incorrectly formatted");
+                return;
+            }
+        }
 
 
 
