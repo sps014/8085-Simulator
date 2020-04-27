@@ -964,12 +964,12 @@ namespace μp101.Core
             {
                 if(Assembler.CallStack.Count>0)
                 {
-                    result.FutureLineNumber = Assembler.CallStack.Last();
+                    result.FutureLineNumber = Assembler.CallStack.Last()+1;
                     Assembler.CallStack.RemoveAt(Assembler.CallStack.Count - 1);
                 }
                 else
                 {
-                    result.SetError("RET can't be executed since no value in callstack");
+                    result.SetError("RET can't be executed since no value in callstack to go.");
                     return;
                 }
             }
