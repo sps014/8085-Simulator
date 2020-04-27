@@ -1,5 +1,5 @@
 
-# μp101
+# 8085 Simulator
  
  #### URL: [https://8085.netlify.app](https://8085.netlify.app)
  
