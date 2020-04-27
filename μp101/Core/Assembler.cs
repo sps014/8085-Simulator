@@ -42,7 +42,9 @@ namespace μp101.Core
 
         public static Dictionary<string, int> LabelsCollection { get; set; } 
         = new Dictionary<string, int>();
-        
+        public static List<int> CallStack { get; set; } = new List<int>();
+
+
         private static LineAssembleResult CurrentResult = null;
 
         public static bool LoadToAssembly(string code)
@@ -57,6 +59,7 @@ namespace μp101.Core
 
             Code = code;
             Lines.Clear();
+            CallStack.Clear();
             Lines.AddRange(code.Split(new char[] { '\n' }));
             CurrentResult = null;
             LabelsCollection = new Dictionary<string, int>();
@@ -204,6 +207,7 @@ namespace μp101.Core
             Code = null;
             LabelsCollection = new Dictionary<string, int>();
             Lines.Clear();
+            CallStack.Clear();
 
             Parallel.For(0, I8085.MemorySize, (i) =>
             {

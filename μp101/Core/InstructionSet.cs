@@ -939,21 +939,18 @@ namespace μp101.Core
 
                 if (Assembler.LabelsCollection.ContainsKey(label))
                 {
-                    if (I8085.Flag_Z.Value == false)
                         result.FutureLineNumber = Assembler.LabelsCollection[label];
-                    else
-                        result.FutureLineNumber = result.LineNumber + 1;
                 }
                 else
                 {
-                    result.SetError($"JNZ label: {label} not found");
+                    result.SetError($"CALL label: {label} not found");
                     return;
                 }
                 line = line.Replace(match.Groups[0].Value, string.Empty);
             }
             else
             {
-                result.SetError("JNZ instruction is incorrectly formatted" + line);
+                result.SetError("CALL instruction is incorrectly formatted" + line);
                 return;
             }
         }

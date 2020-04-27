@@ -18,7 +18,6 @@ namespace μp101.Core
         public int Bytes  { get;set; }
         public List<string> OpCode { get; set; } = new List<string>();
         public bool IsHalt { get; set; } = false;
-        public int ReturnToLineNumber { get; set; }
         public void SetError(string err)
         {
             Result = AssembleOutcome.Failed;
