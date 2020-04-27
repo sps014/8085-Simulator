@@ -8,7 +8,7 @@
                 <TableValue>@(r.Name)</TableValue>
                 <TableValue>@(r.Value)</TableValue>
                 <TableValue>@(r.Hex)</TableValue>
-                <TableValue>Register</TableValue>
+                <TableValue>@(AssemblyUtility.IsRegister(r.Name)==null?"Memory":"Register")</TableValue>
 
             </TableItem>
         }

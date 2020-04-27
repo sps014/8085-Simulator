@@ -927,6 +927,38 @@ namespace μp101.Core
             }
         }
 
+        public static void CALL(ref string line, LineAssembleResult result)
+        {
+            //result.FutureLineNumber = result.LineNumber + 1;
+
+            var match = Regex.Match(line, @"CALL\s+(\w*)");
+            if (match.Success)
+            {
+                string label = match.Groups[1].Value;
+
+
+                if (Assembler.LabelsCollection.ContainsKey(label))
+                {
+                    if (I8085.Flag_Z.Value == false)
+                        result.FutureLineNumber = Assembler.LabelsCollection[label];
+                    else
+                        result.FutureLineNumber = result.LineNumber + 1;
+                }
+                else
+                {
+                    result.SetError($"JNZ label: {label} not found");
+                    return;
+                }
+                line = line.Replace(match.Groups[0].Value, string.Empty);
+            }
+            else
+            {
+                result.SetError("JNZ instruction is incorrectly formatted" + line);
+                return;
+            }
+        }
+
+
 
 
     }
