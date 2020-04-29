@@ -15,8 +15,8 @@ namespace Sim8085.Core
         public List<Register> RegistersChanged { get; set; } = new List<Register>();
         public AssembleOutcome Result { get; set; } = AssembleOutcome.Success;
         public string ErrorMessage { get; set; } = "";
-        public int Bytes  { get;set; }
-        public List<string> OpCode { get; set; } = new List<string>();
+        //public int Bytes  { get;set; }
+        //public List<string> OpCode { get; set; } = new List<string>();
         public bool IsHalt { get; set; } = false;
         public void SetError(string err)
         {
